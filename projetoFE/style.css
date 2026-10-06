@@ -1,0 +1,623 @@
+*{ /* Seleciona todos os elementos da página */
+  margin: 0; /* Remove a margem padrão */
+  padding: 0; /* Remove o espaçamento interno padrão */
+  box-sizing: border-box; /* Faz o tamanho incluir padding e borda */
+  font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; /* Define a fonte do site */
+}
+:root{ /* Define variáveis que podem ser usadas em todo o CSS */
+  --primary: #2a7de1;/* Define a cor principal */
+  --primary-dark: #1a5cb5; /* Define uma versão mais escura da cor principal */
+  --secondary: #f8f9fa; /* Define a cor secundária */
+  --text: #212529; /* Define a cor dos textos */
+  --gray: #6c757d; /* Define a cor cinza */
+  --light-gray: #e9ecef; /* Define um cinza mais claro */
+  --white: #ffffff; /* Define a cor branca */
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Define a sombra dos elementos */
+  --radius: 8px; /* Define o arredondamento das bordas */
+  --transition:0.3s ease; /* Define a velocidade das animações */
+}
+body{ /* Estiliza o corpo inteiro da página */
+  background-color: var(--secondary); /* Define a cor de fundo da página */
+  color: var(--text); /* Define a cor padrão dos textos */
+}
+a{ /* Estiliza os links */
+  text-decoration: none; /* Remove o sublinhado dos links */
+  color: inherit; /* Faz o link usar a mesma cor do elemento pai */
+}
+ul{ /* Estiliza listas */
+  list-style: none; /* Remove as bolinhas da lista */
+}
+img{ /* Estiliza todas as imagens */
+  max-width: 100%; /* Impede a imagem de ultrapassar o elemento */
+  display: block; /* Faz a imagem ocupar uma linha própria */
+}
+.container{ /* Define o tamanho e posicionamento do conteúdo */
+  max-width: 1200px; /* Define a largura máxima */
+  margin: 0 auto; /* Centraliza o conteúdo */
+  padding: 0 20px; /* Adiciona espaço nas laterais */
+}
+/* HEADER: área do cabeçalho */
+header{ /* Estiliza o cabeçalho */
+  background: var(--white); /* Define o fundo branco */
+  boz-shadow: var(--shadow); /* Define a sombra do cabeçalho */
+  position: sticky; /* Mantém o cabeçalho preso durante a rolagem */
+  top: 0; /* Faz o cabeçalho ficar no topo */
+  z-index: 100; /* Coloca o cabeçalho acima de outros elementos */
+}
+.header-content{ /* Organiza os elementos dentro do cabeçalho */
+  display: flex; /* Ativa o Flexbox */
+  align-items: center; /* Alinha os elementos verticalmente */
+  justify-content: space-between; /* Distribui os elementos pelo espaço disponível */
+  padding: 15px 0; /* Adiciona espaçamento acima e abaixo */
+  flex-wrap: wrap; /* Permite que os elementos quebrem para outra linha */
+  gap: 15px; /* Define espaço entre os elementos */
+}
+.logo{ /* Estiliza o logotipo */
+  font-size: 1.8rem; /* Define o tamanho da fonte */
+  font-weight: 700; /* Deixa o texto em negrito */
+  color: var(--primary); /* Define a cor do logotipo */
+}
+i{ /* Estiliza os ícones */
+  margin-right: 8px; /* Adiciona espaço à direita do ícone */
+}
+.search-bar{ /* Estiliza a barra de pesquisa */
+  display: flex; /* Coloca os elementos lado a lado */
+  flex: 1 1 300px; /* Permite que a barra cresça e tenha tamanho mínimo */
+  max-width: 500px; /* Define a largura máxima da barra */
+}
+.search-bar input{ /* Estiliza o campo de pesquisa */
+  flex: 1; /* Faz o campo ocupar o espaço disponível */
+  padding: 10px 15px; /* Adiciona espaçamento interno */
+  border: 2px solid var(--light-gray); /* Define a borda */
+  border-radius: var(--radius) 0 0 var(--radius); /* Arredonda os lados esquerdos */
+  outline: none; /* Remove o contorno padrão */
+  transition: var(--transition); /* Adiciona uma transição suave */
+}
+.search-bar input:focus{ /* Estiliza o campo quando está selecionado */
+  border-color: var(--primary); /* Muda a cor da borda */
+}
+.search-bar button{ /* Estiliza o botão de pesquisa */
+  background: var(--primary); /* Define a cor de fundo */
+  color: white; /* Define a cor do texto */
+  border: none; /* Remove a borda */
+  padding: 0 20px; /* Adiciona espaço nas laterais */
+  border-radius: 0 var(--radius) var(--radius) 0; /* Arredonda os lados direitos */
+  cursor: pointer; /* Mostra o cursor de clique */
+  transition: var(--transition); /* Adiciona uma transição suave */
+}
+.search-bar button:hover{ /* Estiliza o botão quando o mouse passa por cima */
+  background: var(--primary-dark); /* Escurece o fundo do botão */
+}
+.header-actions{ /* Organiza as ações do cabeçalho */
+  display: flex; /* Ativa o Flexbox */
+  align-items: center; /* Alinha os elementos verticalmente */
+  gap: 20px; /* Define espaço entre os elementos */
+}
+.header-actions a{ /* Estiliza os links das ações */
+  position: relative; /* Permite posicionar elementos dentro do link */
+  font-size: 1.5rem; /* Define o tamanho dos ícones */
+  color: var(--text); /* Define a cor dos ícones */
+  transition: var(--transition); /* Adiciona uma transição suave */
+}
+.header-actions a:hover{ /* Estiliza as ações quando o mouse passa por cima */
+  color: var(--primary); /* Muda a cor para a cor principal */
+}
+.cart-count{ /* Estiliza o número de itens do carrinho */
+  position: absolute; /* Permite posicionar o contador */
+  top: -8px; /* Move o contador para cima */
+  right: -12px; /* Move o contador para a direita */
+  background: #dc3545; /* Define a cor vermelha */
+  color: white; /* Define a cor do número */
+  font-size: 0.7rem; /* Define o tamanho do número */
+  font-weight: 700; /* Deixa o número em negrito */
+  padding: 2px 7px; /* Define o espaçamento interno */
+  border-radius: 50%; /* Deixa o contador redondo */
+  min-width: 20px; /* Define uma largura mínima */
+  text-align: center; /* Centraliza o número */
+}
+/* MENU DE NAVEGAÇÃO: área dos links */
+nav { /* Estiliza a área de navegação */
+  background: var(--white); /* Define o fundo branco */
+  border-top: 1px solid var(--light-gray); /* Adiciona uma borda no topo */
+}
+.nav-menu{ /* Organiza os itens do menu */
+  display: flex; /* Ativa o Flexbox */
+  justify-content: center; /* Centraliza os itens */
+  gap:30px; /* Define espaço entre os links */
+  flex-wrap: wrap; /* Permite quebrar os itens em outra linha */
+}
+.nav-menu a{ /* Estiliza os links do menu */
+  font-weight: 600; /* Deixa os links mais destacados */
+  color: var(--text); /* Define a cor dos links */
+  transition: var(--transition); /* Adiciona uma transição suave */
+  position: relative; /* Permite posicionar o efeito abaixo */
+  cursor: pointer; /* Mostra o cursor de clique */
+}
+.nav-menu a::after{ /* Cria a linha abaixo dos links */
+  content: ''; /* Cria um elemento vazio */
+  position: absolute; /* Permite posicionar a linha */
+  bottom: 4px; /* Define a distância da linha para baixo */
+  left: 0; /* Começa a linha no lado esquerdo */
+  width: 0; /* Começa a linha sem largura */
+  height: 2px; /* Define a altura da linha */
+  background: var(--primary); /* Define a cor da linha */
+  transition: var(--transition); /* Anima o tamanho da linha */
+}
+.nav-menu a:hover::after{ /* Controla a linha quando passa o mouse */
+  width: 100%; /* Faz a linha ocupar toda a largura do link */
+}
+.nav-menu a:hover{ /* Estiliza o link quando passa o mouse */
+  color: var(--primary); /* Muda a cor do link */
+}
+.menu-toggle{ /* Estiliza o botão do menu */
+  display: none; /* Esconde o botão inicialmente */
+  font-size: 1.8rem; /* Define o tamanho do ícone */
+  background: none; /* Remove o fundo */
+  border: none; /* Remove a borda */
+  cursor: pointer; /* Mostra o cursor de clique */
+  color: var(--text); /* Define a cor do ícone */
+}
+/* BANNER: área de destaque */
+.banner{ /* Estiliza o banner */
+  background: linear-gradient(135deg, var(--primary), #6a9cf5); /* Cria um degradê */
+  color: white; /* Define a cor do texto */
+  padding: 60px 20px; /* Define o espaçamento interno */
+  border-radius: var(--radius); /* Arredonda os cantos */
+  margin: 30px 0; /* Define espaço acima e abaixo */
+  text-align: center; /* Centraliza o texto */
+  display: flex; /* Ativa o Flexbox */
+  flex-direction: column; /* Coloca os elementos em coluna */
+  align-items: center; /* Centraliza os elementos horizontalmente */
+  justify-content: center; /* Centraliza os elementos verticalmente */
+  min-height: 250px; /* Define uma altura mínima */
+}
+.banner h1{ /* Estiliza o título do banner */
+  font-size: 2.8rem; /* Define o tamanho do título */
+  margin-bottom: 15px; /* Adiciona espaço abaixo do título */
+}
+.banner p{ /* Estiliza o texto do banner */
+  font-size: 1.2rem; /* Define o tamanho do texto */
+  max-width: 600px; /* Define a largura máxima do texto */
+  opacity: 0.9; /* Deixa o texto levemente transparente */
+}
+.banner .btn{ /* Estiliza o botão do banner */
+  margin-top: 25px; /* Adiciona espaço acima do botão */
+  background: white; /* Define o fundo branco */
+  color: var(--primary); /* Define a cor do texto */
+  padding: 12px 30px; /* Define o espaçamento interno */
+  border-radius: 50px; /* Deixa o botão bem arredondado */
+  font-weight: 700; /* Deixa o texto em negrito */
+  transition: var(--transition); /* Adiciona uma transição suave */
+  display: inline-block; /* Permite aplicar tamanho e espaçamento */
+}
+.banner .btn:hover{ /* Estiliza o botão quando o mouse passa por cima */
+  transform: scale(1.05); /* Aumenta levemente o tamanho do botão */
+  box-shadow: 0px 05px 15px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao botão */
+}
+/*CATEGORIAS*/
+.section-title{ /* Estiliza o título da seção */
+  font-size: 2rem; /* Define o tamanho da fonte */
+  margin: 40px-0 20px; /* Define o espaço ao redor do título */
+  text-align: center; /* Centraliza o título */
+}
+.categories-grid{ /* Organiza as categorias em uma grade */
+  display: grid; /* Ativa o sistema de grade */
+  grid-template-columns: repeat(auto-fit,minmax(120px, 1fr)); /* Define as colunas automaticamente */
+  gap:20px; /* Define o espaço entre as categorias */
+  margin-bottom: : 40px; /* Define o espaço abaixo das categorias */
+}
+.category-item{ /* Estiliza cada item de categoria */
+  background: var(--white); /* Define o fundo branco */
+  padding: 20px 10px; /* Define o espaçamento interno */
+  border-radius: var(--radius); /* Arredonda os cantos */
+  text-align: center; /* Centraliza o conteúdo */
+  box-shadow: var(--shadow); /* Adiciona uma sombra */
+  transition: var(--transition); /* Define uma transição suave */
+  cursor: pointer; /* Mostra o cursor de clique */
+}
+.category-item:hover{ /* Estiliza a categoria ao passar o mouse */
+  transform: translateY(-5px); /* Move o item 5 pixels para cima */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Define uma sombra maior ao passar o mouse */
+}
+.banner .btn:hover{ /* Estiliza o botão quando o mouse passa por cima */
+  transform: scale(1.05); /* Aumenta levemente o tamanho do botão */
+  box-shadow: 0px 05px 15px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao botão */
+}
+/*CATEGORIAS*/
+.section-title{ /* Estiliza o título da seção */
+  font-size: 2rem; /* Define o tamanho da fonte */
+  margin: 40px-0 20px; /* Define o espaço ao redor do título */
+  text-align: center; /* Centraliza o título */
+}
+.categories-grid{ /* Organiza as categorias em uma grade */
+  display: grid; /* Ativa o sistema de grade */
+  grid-template-columns: repeat(auto-fit,minmax(120px, 1fr)); /* Define as colunas automaticamente */
+  gap:20px; /* Define o espaço entre as categorias */
+  margin-bottom: : 40px; /* Define o espaço abaixo das categorias */
+}
+.category-item{ /* Estiliza cada item de categoria */
+  background: var(--white); /* Define o fundo branco */
+  padding: 20px 10px; /* Define o espaçamento interno */
+  border-radius: var(--radius); /* Arredonda os cantos */
+  text-align: center; /* Centraliza o conteúdo */
+  box-shadow: var(--shadow); /* Adiciona uma sombra */
+  transition: var(--transition); /* Define uma transição suave */
+  cursor: pointer; /* Mostra o cursor de clique */
+}
+.category-item:hover{ /* Estiliza a categoria ao passar o mouse */
+  transform: translateY(-5px); /* Move o item 5 pixels para cima */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Define uma sombra maior ao passar o mouse */
+}
+.category-item.active{ /* Estiliza a categoria que está ativa */
+  border: 2px solid var(--primary); /* Adiciona uma borda azul */
+  background: #eef4ff; /* Define uma cor de fundo azul-claro */
+}
+.category-item i{ /* Estiliza o ícone dentro da categoria */
+  font-size: 2.5rem; /* Define o tamanho do ícone */
+  color: var(--primary); /* Define a cor do ícone */
+  margin-bottom: 8px; /* Adiciona espaço abaixo do ícone */
+}
+.category-item span{ /*O CSS é o código que usamos para mudar a aparência (cores, tamanhos, fontes) de um site.*/
+  display: block;/* faz um elemento HTML se comportar como um bloco sólido na página, ocupando 100% da largura disponível do seu elemento-pai.*/
+  font-weight: 600;/*controla a espessura ou a intensidade (o "peso") das letras de um texto*/
+}
+/*PRODUTOS*/
+.products-grid{
+  display: grid;/*transforma um elemento em um container de grade (grid), permitindo organizar os elementos filhos em linhas e colunas ao mesmo tempo*/
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));/*cria um layout de grade (grid) totalmente responsivo e automático que reorganiza os elementos na tela sem precisar de nenhuma regra de @media query*/
+  gap:25px; /*define um espaço de 25 pixels entre os elementos filhos dentro de um container*/
+  margin-bottom: 50px; /*cria um espaçamento externo de 50 pixels na parte inferior de um elemento HTML*/
+}
+.product-card{
+  background: var(--white); /*define a cor de fundo de um elemento HTML usando uma variável personalizada do CSS*/
+  border-radius: var(--radius);/*Essa linha de código serve para arredondar os cantos de um elemento em uma página de internet (como um botão, uma imagem ou uma caixa de texto).*/
+  box-shadow: var(--shadow);/*criar uma sombra ao redor de um elemento*/
+  overflow: hidden;/*esconde qualquer conteúdo de um elemento que passe do tamanho limite da sua caixa (container)*/
+  transition: var(--transition);/*serve para controlar a velocidade e a suavidade de uma animação (transição) em um elemento da sua página da Web.*/
+  display: flex;/*transforma um elemento HTML em um contêiner flexível, organizando todos os seus filhos diretos em uma linha horizontal por padrão*/
+  flex-direction: column;/*organiza os itens de um contêiner flexível em uma coluna vertical, um abaixo do outro*/
+}
+.product-cadr:hover{
+  transform: translateY(-6px);/*mover um elemento para cima em uma página da web.*/
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);/*cria uma sombra suave e difusa abaixo de um elemento HTML, dando a sensação de que ele está levemente flutuando ou elevado na tela*/
+}
+.product-card img{
+  width: 100%;/*faz com que um elemento ocupe exatamente 100% da largura do seu elemento pai*/
+  height: 200px;/*define a altura de um elemento na sua página de internet como 200 pixels (px).*/
+  object-fit: cover;/*serve para fazer uma imagem ou vídeo preencher totalmente o seu contêiner sem distorcer, cortando as bordas caso a proporção original seja diferente da caixa.*/
+  background: var(--ligth-gray);/*mudar a cor de fundo de algum elemento em um site.*/
+}
+.product-info{
+  padding: 15px;/* cria um espaçamento interno de 15 pixels em todos os quatro lados (superior, direito, inferior e esquerdo) entre o conteúdo de um elemento e a sua borda*/
+  flex: 1;/*é um atalho (shorthand) para três propriedades combinadas*/
+  display: flex;/*transforma um elemento HTML em um contêiner flexível*/
+  flex-direction: column;/*organiza os elementos de um contêiner flexível em uma coluna vertical, um abaixo do outro*/
+}
+.product-info h3{
+  font: 1rem;/*define o tamanho do texto para o tamanho padrão da fonte raiz do site*/
+  margin-bottom: 8px;/*criar um espaço em branco abaixo de um elemento na internet.*/
+}
+.product-info .price{
+  font-size: 1.4rem;/*definir o tamanho do texto em uma página web*/
+  font-weight: 700;/*deixa o texto em negrito (bold) usando um valor numérico no CSS*/
+  color: var(--primary);/*Define a cor do ícone*/
+  margin: 8px 0;/*aplica um espaçamento externo de 8 pixels em cima e embaixo, e zero espaço nas laterais (esquerda e direita) de um elemento*/
+}
+.product-info .old-price{
+  font-size: 0.9rem;/*definir o tamanho do texto em uma página web*/
+  color: var(--gray);/*é uma linha de código usada em CSS*/
+  text-decoration: line-through;/*riscar o texto no meio (efeito tachado)*/
+  margin-left: 8px;/*criar um espaço vazio do lado esquerdo de um elemento na internet.*/
+}
+.product-info .rating{
+  color: #f1c40f;/*define a cor do texto como um tom de amarelo vivo ou dourado*/
+  margin-bottom: 10px;/*cria um espaço externo de 10 pixels na parte de baixo de um elemento, empurrando qualquer outro conteúdo que esteja logo abaixo dele*/
+}
+.product-info .btn-add{
+  background: var(--primary);/*Define a cor do texto*/
+  color: white;/*define a cor do texto como branca em páginas da web.*/
+  border: none;/*remove completamente qualquer borda visível de um elemento HTML.*/
+  padding: 10px 0;/* criar um espaço interno (um "respiro") dentro de um elemento, empurrando o conteúdo dele para dentro*/
+  border-radius: var(--radius);/*arredondar os cantos de um elemento em uma página de internet*/
+  font-weight: 600;/*define a espessura do texto como semi-negrito (semi-bold), tornando as letras mais grossas que o normal, mas um pouco mais finas que o negrito tradicional*/
+  cursor: pointer;/*transforma o cursor do mouse em uma mãozinha com o dedo apontando quando ele passa por cima de um elemento.*/
+  transition: var(--transition);/*serve para controlar a velocidade e a suavidade de uma animação (transição) em um elemento da sua página da Web.*/
+  margin: auto;/*faz o navegador calcular e distribuir o espaço livre ao redor de um elemento de forma automática*/
+  flex: 1;/*faz com que um elemento ocupe todo o espaço livre disponível no seu contêiner flexível.*/
+}
+.product-info .btn-add:hover{
+  background:var(--primary-dark);/*Define a cor de fundo de um elemento HTML usando uma variável de cores do CSS chamada*/
+}
+.btn-detail{
+  background: #6c757d; /*muda a cor de fundo de um elemento em um site para cinza-escuro (estilo ardósia).*/
+  color: white;/*define a cor do texto de um elemento HTML como branco*/
+  border: none;/*remove qualquer borda visível ao redor de um elemento*/
+  padding: 10px 0;/*criar um espaço interno dentro de um elemento*/
+  border-radius: var(--radius);/*arredondar os cantos de um elemento em uma página de internet*/
+  cursor: pointer;/*muda o formato do ponteiro do mouse para o ícone de uma mão apontando quando o usuário passa o cursor por cima de um elemento*/
+  flex: 1;/*faz com que um elemento cresça para ocupar todo o espaço livre disponível dentro do seu contêiner*/
+  transition: var(--transition);/*serve para controlar a velocidade e a suavidade de uma animação (transição) em um elemento da sua página da Web.*/
+}
+.btn-detail:hover{
+  background: #5a6268;/*muda a cor de fundo de um elemento em um site para cinza-escuro (estilo ardósia).*/
+}
+/*DETALHES DO PRODUTO*/
+#product-detail{
+  margin-bottom: 50px;/*criar um espaço vazio de 50 pixels abaixo de um elemento na sua página de internet.*/
+}
+#product-detail-content{
+  background: var(--white);/*define a cor de fundo de um elemento HTML usando uma variável personalizada do CSS*/
+  padding: 30px;/*criar um espaço interno dentro de um elemento*/
+  border-radius: var(--radius);/*arredondar os cantos de um elemento em uma página de internet*/
+  box-shadow: var(--shadow);/**/
+}
+#back-to-products{
+  background: var(--gray);/*muda a cor de fundo de um elemento na internet (como um botão, uma caixa ou uma página inteira) para a cor cinza.*/
+  color: white;/*define a cor do texto de um elemento como branca em códigos de programação CSS para páginas web.*/
+  ```css
+border: none; /* Remove a borda padrão do botão */
+padding: 10px 20px; /* Adiciona espaçamento interno de 10px em cima/baixo e 20px nas laterais */
+border-radius: var(--radius); /* Arredonda os cantos usando a variável de arredondamento */
+cursor: pointer; /* Mostra a mãozinha quando o mouse passa por cima */
+font-weight: 600; /* Deixa o texto do botão mais grosso */
+transition: var(--transition); /* Adiciona uma transição suave nas mudanças */
+}
+
+#back-to-products:hover { /* Estiliza o botão quando o mouse passa por cima */
+  background: #5a6268; /* Muda o fundo para um cinza mais escuro */
+}
+/* CARRINHO SIDEBAR */
+.cart-overlay { /* Cria a camada que aparece atrás do carrinho */
+  display: none; /* Esconde a camada inicialmente */
+  position: fixed; /* Mantém a camada fixa na tela */
+  top: 0; /* Posiciona no topo da tela */
+  left: 0; /* Posiciona no lado esquerdo */
+  width: 100%; /* Faz a camada ocupar toda a largura */
+  height: 100%; /* Faz a camada ocupar toda a altura */
+  background: rgba(0, 0, 0, 0.5); /* Cria um fundo preto semitransparente */
+  z-index: 200; /* Coloca a camada acima dos outros elementos */
+  justify-content: flex-end; /* Faz o carrinho ficar alinhado à direita */
+}
+.cart-overlay.open { /* Estiliza a camada quando o carrinho está aberto */
+  display: flex; /* Mostra a camada e ativa o Flexbox */
+}
+/* CARRINHO SIDEBAR */
+
+.cart-sidebar{
+  background: var(--white); /* Define o fundo branco da barra lateral */
+  width: 100%; /* Faz a barra ocupar 100% da largura disponível */
+  max-width: 400px; /* Limita a largura máxima da barra */
+  height: 100%; /* Faz a barra ocupar toda a altura da tela */
+  padding: 25px; /* Adiciona espaço interno */
+  display: flex; /* Ativa o Flexbox */
+  flex-direction: column; /* Organiza os elementos em coluna */
+  animation: slidein 0.3s ease; /* Aplica uma animação de entrada */
+}
+
+/* Animação para a barra lateral entrar pela direita */
+@keyframes slidein {
+  from {
+    transform: translateX(100%); /* Começa fora da tela, à direita */
+  }
+
+  to {
+    transform: translateX(0); /* Termina na posição normal */
+  }
+}
+
+/* Título do carrinho */
+.cart-sidebar h2{
+  display: flex; /* Ativa o Flexbox */
+  justify-content: space-between; /* Separa o título e o botão */
+  align-items: center; /* Alinha os elementos verticalmente */
+  border-bottom: 2px solid var(--light-gray); /* Cria uma linha abaixo do título */
+  padding-bottom: 15px; /* Espaço abaixo do título */
+  margin-bottom: 20px; /* Espaço depois do título */
+}
+
+/* Botão de fechar o carrinho */
+.cart-sidebar .close-cart{
+  background: none; /* Remove o fundo do botão */
+  border: none; /* Remove a borda do botão */
+  font-size: 1.8rem; /* Define o tamanho do ícone */
+  cursor: pointer; /* Mostra a mãozinha ao passar o mouse */
+  color: var(--gray); /* Define a cor do botão */
+  transition: var(--transition); /* Adiciona uma transição suave */
+}
+
+/* Efeito ao passar o mouse no botão fechar */
+.cart-sidebar .close-cart:hover{
+  color: var(--text); /* Escurece a cor do botão */
+}
+
+/* Item individual dentro do carrinho */
+.cart-item{
+  display: flex; /* Ativa o Flexbox */
+  gap: 15px; /* Cria espaço entre os elementos */
+  padding: 12px 0; /* Adiciona espaço acima e abaixo */
+  border-bottom: 1px solid var(--light-gray); /* Adiciona uma linha entre os produtos */
+  align-items: center; /* Centraliza os elementos verticalmente */
+}
+
+/* Imagem do produto no carrinho */
+.cart-item img{
+  width: 60px; /* Define a largura da imagem */
+  height: 60px; /* Define a altura da imagem */
+  object-fit: cover; /* Ajusta a imagem sem deformá-la */
+  border-radius: var(--radius); /* Arredonda os cantos */
+  background: var(--light-gray); /* Define uma cor de fundo */
+}
+.cart-item-details{
+  flex: 1; /* Faz essa área ocupar o espaço disponível */
+}
+.cart-item-details h4{
+  font-size: 0.95rem; /* Define o tamanho do nome */
+}
+.cart-item-details .item-price{
+  color: var(--primary); /* Define a cor usando a variável principal */
+  font-weight: 600; /* Deixa o preço mais destacado */
+}
+.cart-item .remove-item{
+  background: none; /* Remove o fundo */
+  border: none; /* Remove a borda */
+  color: #DC143C; /* Define a cor vermelha */
+  font-size: 1.2rem; /* Define o tamanho do ícone */
+  cursor: pointer; /* Mostra a mãozinha ao passar o mouse */
+}
+.cart-total{
+  margin-top: auto;/*empurra o elemento para baixo ao ocupar todo o espaço livre disponível acima dele*/
+  padding-top: 20px;/*adiciona um espaçamento interno de 20 pixels na parte superior de um elemento HTML, empurrando o conteúdo dele para baixo em relação à borda de cima*/
+  border-top: 2px solid var(--light-gray);/*criar uma linha reta (uma borda) no topo de algum elemento de uma página da web.*/
+  font-size: 1.3rem;/* Define o tamanho do ícone */
+  font-weight: 700;/* Deixa o preço mais destacado */
+  display: flex;/* Ativa o Flexbox */
+  justify-content: space-between;/*distribui os itens filhos de um contêiner flexível de forma uniforme, colando o primeiro item na borda inicial e o último na borda final, com o espaço restante dividido igualmente entre os elementos do meio.*/
+}
+.cart-actions{
+  display: flex;/* Ativa o Flexbox */
+  gap: 10px;/*criar um espaço de 10 pixels entre os elementos filhos de um container.*/
+  margin-top: 15px;/*cria um espaço transparente de 15 pixels na parte superior de um elemento, afastando-o do elemento que está logo acima dele*/
+}
+.cart-actions button{
+  flex: 1;/* Faz essa área ocupar o espaço disponível */
+  padding: 12px;/* Adiciona espaço acima e abaixo */
+  border-radius: var(--radius);/* Arredonda os cantos */
+  font-weight: 600;/* Deixa o preço mais destacado */
+  cursor: pointer;/* Mostra a mãozinha ao passar o mouse */
+  transition: var(--transition);/* Adiciona uma transição suave */
+}
+.btn-checout {
+    background: var(--primary); /* Define a cor de fundo do botão usando uma variável */
+    color: white; /* Define a cor do texto como branco */
+}
+
+.btn-checout:hover {
+    background: var(--primary-dark); /* Altera o fundo para uma cor mais escura ao passar o mouse */
+}
+
+.btn-clear {
+    background: #d4d4d4; /* Define a cor de fundo cinza para o botão de limpar */
+}
+
+/*FOOTER*/
+footer {
+    background: var(--white); /* Define o fundo do rodapé usando uma variável */
+    padding: 40px 0 20px; /* Aplica espaçamento interno: 40px acima, 0 nas laterais, 20px abaixo */
+    margin-top: 40px; /* Cria um espaço de 40px acima do rodapé, separando-o do conteúdo */
+    border-top: 1px solid var(--ligth--gray); /* Adiciona uma linha fina cinza no topo do rodapé */
+}
+
+.footer-grid {
+    display: grid; /* Ativa o layout de Grid (grade) para organizar os elementos */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Cria colunas que se ajustam sozinhas com tamanho mínimo de 180px */
+    gap: 30px; /* Define um espaço de 30px entre as colunas e linhas da grade */
+    margin-bottom: 30px; /* Cria um espaço de 30px abaixo da grade */
+}
+
+.footer-grid h4 {
+    margin-bottom: 15px; /* Adiciona um espaço de 15px abaixo dos títulos do rodapé */
+}
+
+.footer-grid ul li {
+    margin-bottom: 8px; /* Espaça os itens da lista do rodapé com 8px de distância entre eles */
+}
+
+.footer-grid ul li a {
+    color: var(--gray); /* Define a cor padrão dos links do rodapé usando uma variável */
+    transition: var(--transition); /* Adiciona um efeito suave de transição ao mudar de cor */
+}
+
+.footer-grid ul li a:hover {
+    color: var(--primary); /* Muda a cor do link para a cor primária ao passar o mouse */
+}
+
+.footer-botton {
+    text-align: center; /* Centraliza o texto dos direitos autorais/créditos */
+    padding-top: 20px; /* Adiciona um espaçamento interno de 20px acima do texto */
+    border-top: 1px solid var(--light-gray); /* Desenha uma linha divisória acima da seção final */
+    color: var(--gray); /* Define a cor do texto usando uma variável cinza */
+    font-size: 0.9rem; /* Reduz ligeiramente o tamanho da fonte */
+}
+
+/*MEDIA Queries*/
+@media(max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Mostra o botão do menu hambúrguer em telas menores */
+    }
+
+    .nav-menu {
+        display: none; /* Esconde o menu de navegação padrão por segurança */
+        flex-direction: column; /* Alinha os itens do menu um abaixo do outro verticalmente */
+        align-items: center; /* Centraliza os itens horizontalmente na lista */
+        gap: 15px; /* Define um espaçamento de 15px entre os links do menu */
+        padding: 15px 0; /* Adiciona 15px de espaçamento interno acima e abaixo do menu */
+        width: 100%; /* Faz o menu ocupar toda a largura da tela disponível */
+    }
+
+    .nav-menu.open {
+        display: flex; /* Exibe o menu em formato Flexbox quando a classe 'open' for ativada via JavaScript */
+    }
+
+    .header-content {
+        flex-wrap: wrap; /* Permite que os elementos do cabeçalho quebrem para a próxima linha se faltar espaço */
+    }
+
+    .search-bar {
+        order: 3; /* Move a barra de pesquisa para ser o terceiro elemento na ordem visual */
+        flex-basis: 100%; /* Força a barra de pesquisa a ocupar 100% da largura disponível */
+        max-width: 100%; /* Garante que a barra de pesquisa não ultrapasse o limite da tela */
+    }
+
+    .banner h1 {
+        font-size: 2rem; /* Reduz o tamanho do título principal do banner para 2rem em tablets */
+    }
+
+    banner p {
+        font-size: 1rem; /* Define o tamanho do texto do parágrafo do banner para 1rem */
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Ajusta a grade de produtos para exibir cartões menores de no mínimo 160px */
+        gap: 15px; /* Reduz o espaçamento entre os produtos para 15px */
+    }
+
+    .cart-sidebar {
+        max-width: 100%; /* Faz a lateral do carrinho ocupar no máximo a largura total da tela */
+    }
+
+    #product-detail-content {
+        grid-template-columns: 1fr !important; /* Força o conteúdo de detalhes do produto a ficar em uma única coluna */
+        padding: 20px; /* Aplica um espaçamento interno de 20px ao redor do conteúdo */
+    }
+
+    #product-detail-content {
+        grid-template-columns: 1fr !important; /* Linha repetida no código original que reforça a coluna única */
+    }
+}
+
+@media(max-width: 480px) {
+    .logo {
+        font-size: 1.4rem; /* Reduz o tamanho da fonte da logo para celulares pequenos */
+    }
+
+    .header-actions a {
+        font-size: 1.2; /* Define o tamanho dos links de ação (Falta a unidade de medida aqui, ex: 'rem' ou 'em') */
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr); /* Força a grade de categorias a exibir exatamente 3 colunas de tamanhos iguais */
+    }
+
+    products-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tenta forçar a grade de produtos a exibir 2 colunas (Falta o '.' antes do nome da classe no CSS original) */
+    }
+
+    .banner {
+        padding: 40px 15px; /* Reduz o espaçamento interno do banner para 40px vertical e 15px horizontal */
+        min-height: 180px; /* Define a altura mínima do banner para 180px */
+    }
+
+    .banner h1 {
+        font-size: 1.6rem; /* Reduz ainda mais o tamanho do título do banner para telas de celulares */
+    }
+}
