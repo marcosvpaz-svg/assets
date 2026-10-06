@@ -1,0 +1,710 @@
+* {
+  margin: 0; /* Remove a margem externa de todos os elementos */
+  padding: 0; /* Remove o espaçamento interno de todos os elementos */
+  box-sizing: border-box; /* Inclui bordas e espaçamentos no tamanho total do elemento */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Define a fonte do texto */
+}
+
+:root {
+  --primary: #00BFFF; /* Define a cor principal do site */
+  --primary-dark: #1D4ED8; /* Define a versão mais escura da cor principal */
+  --secondary: #06B6D4; /* Define a cor secundária do site */
+  --text: #172033; /* Define a cor principal dos textos */
+  --gray: #64748B; /* Define uma cor cinza para os textos */
+  --light-gray: #D9E2F1; /* Define uma cor cinza-clara para bordas */
+  --white: #FFFFFF; /* Define a cor branca */
+  --background: #F1F5FF; /* Define a cor de fundo padrão */
+  --success: #16A34A; /* Define a cor para mensagens de sucesso */
+  --danger: #DC2626; /* Define a cor para alertas e erros */
+  --shadow: 0 8px 24px rgba(30, 64, 175, 0.12); /* Define a sombra padrão dos elementos */
+  --radius: 14px; /* Define o arredondamento padrão dos cantos */
+  --transition: 0.3s ease; /* Define a duração e a suavidade das animações */
+}
+
+body {
+  background: linear-gradient(180deg, #EEF5FF 0%, #F8FAFC 100%); /* Cria um fundo com degradê vertical */
+  color: var(--text); /* Define a cor padrão dos textos */
+  min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
+}
+
+a {
+  text-decoration: none; /* Remove o sublinhado dos links */
+  color: inherit; /* Faz o link herdar a cor do elemento pai */
+}
+
+ul {
+  list-style: none; /* Remove os marcadores das listas */
+}
+
+img {
+  max-width: 100%; /* Impede que a imagem ultrapasse a largura do elemento pai */
+  display: block; /* Faz a imagem ocupar uma linha própria */
+}
+
+button,
+input {
+  font: inherit; /* Faz os botões e campos herdarem a fonte do elemento pai */
+}
+
+button {
+  cursor: pointer; /* Mostra a mãozinha ao passar o mouse sobre o botão */
+}
+
+.container {
+  max-width: 1200px; /* Define a largura máxima do conteúdo */
+  margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
+  padding: 0 20px; /* Adiciona espaço interno nas laterais */
+}
+
+header {
+  background: rgba(255, 255, 255, 0.96); /* Define um fundo branco com leve transparência */
+  box-shadow: var(--shadow); /* Adiciona uma sombra ao cabeçalho */
+  position: sticky; /* Mantém o cabeçalho fixo ao rolar a página */
+  top: 0; /* Define a posição do cabeçalho no topo */
+  z-index: 100; /* Mantém o cabeçalho acima de outros elementos */
+  backdrop-filter: blur(10px); /* Aplica um efeito de desfoque atrás do cabeçalho */
+}
+
+.header-content {
+  display: flex; /* Organiza os elementos em uma linha flexível */
+  align-items: center; /* Alinha os elementos verticalmente ao centro */
+  justify-content: space-between; /* Distribui os elementos com espaço entre eles */
+  padding: 15px 0; /* Adiciona espaço interno em cima e embaixo */
+  flex-wrap: wrap; /* Permite que os elementos passem para outra linha */
+  gap: 15px; /* Define o espaçamento entre os elementos */
+}
+
+.logo {
+  font-size: 1.8rem; /* Define o tamanho da fonte da logo */
+  font-weight: 800; /* Deixa o texto da logo bem grosso */
+  color: var(--primary); /* Define a cor principal da logo */
+}
+
+.logo span {
+  color: var(--secondary); /* Define uma cor diferente para uma parte da logo */
+}
+
+i {
+  margin-right: 8px; /* Adiciona espaço à direita dos ícones */
+}
+
+.search-bar {
+  display: flex; /* Organiza o campo e o botão de busca em uma linha */
+  flex: 1 1 300px; /* Permite crescer e diminuir, com tamanho inicial de 300px */
+  max-width: 500px; /* Define a largura máxima da barra de busca */
+}
+
+.search-bar input {
+  flex: 1; /* Faz o campo de busca ocupar o espaço disponível */
+  padding: 12px 15px; /* Adiciona espaço interno no campo */
+  border: 2px solid var(--light-gray); /* Define uma borda cinza-clara de 2px */
+  border-radius: var(--radius) 0 0 var(--radius); /* Arredonda os cantos esquerdos do campo */
+  outline: none; /* Remove o contorno padrão ao selecionar o campo */
+  background: #FFFFFF; /* Define o fundo branco do campo */
+  color: var(--text); /* Define a cor do texto digitado */
+  transition: var(--transition); /* Suaviza as mudanças visuais */
+}
+
+.search-bar input:focus {
+  border-color: var(--primary); /* Muda a cor da borda quando o campo é selecionado */
+}
+
+.search-bar button {
+  background: var(--primary); /* Define a cor de fundo do botão de busca */
+  color: white; /* Define a cor do texto do botão */
+  border: none; /* Remove a borda do botão */
+  padding: 0 20px; /* Adiciona espaço interno nas laterais */
+  border-radius: 0 var(--radius) var(--radius) 0; /* Arredonda os cantos direitos do botão */
+  transition: var(--transition); /* Suaviza as mudanças visuais do botão */
+}
+
+.search-bar button:hover {
+  background: var(--primary-dark); /* Escurece o botão quando o mouse passa sobre ele */
+}
+
+.header-actions {
+  display: flex; /* Organiza os elementos em uma linha */
+  align-items: center; /* Alinha os elementos verticalmente ao centro */
+  gap: 20px; /* Define o espaço entre os elementos */
+}
+
+.header-actions a {
+  position: relative; /* Permite posicionar elementos dentro do link */
+  font-size: 1.5rem; /* Define o tamanho dos ícones ou textos */
+  color: var(--text); /* Define a cor dos links */
+  transition: var(--transition); /* Suaviza as mudanças de cor */
+}
+
+.header-actions a:hover {
+  color: var(--primary); /* Muda a cor do link ao passar o mouse */
+}
+
+.cart-count {
+  position: absolute; /* Permite posicionar o contador sobre outro elemento */
+  top: -8px; /* Posiciona o contador 8px acima */
+  right: -12px; /* Posiciona o contador 12px à direita */
+  background: var(--danger); /* Define o fundo vermelho do contador */
+  color: white; /* Define a cor branca do número */
+  font-size: 0.7rem; /* Define o tamanho do número */
+  font-weight: 700; /* Deixa o número em negrito */
+  padding: 2px 7px; /* Adiciona espaço interno ao contador */
+  border-radius: 50%; /* Deixa o contador arredondado */
+  min-width: 20px; /* Define a largura mínima do contador */
+  text-align: center; /* Centraliza o número dentro do contador */
+}
+
+nav {
+  background: #FFFFFF; /* Define o fundo branco da navegação */
+  border-top: 1px solid var(--light-gray); /* Adiciona uma borda na parte superior */
+}
+
+.nav-menu {
+  display: flex; /* Organiza os links do menu em uma linha */
+  justify-content: center; /* Centraliza os links horizontalmente */
+  gap: 30px; /* Define o espaço entre os links */
+  flex-wrap: wrap; /* Permite que os links passem para outra linha */
+}
+
+.nav-menu a {
+  font-weight: 600; /* Deixa o texto dos links mais grosso */
+  color: var(--text); /* Define a cor dos links */
+  transition: var(--transition); /* Suaviza as mudanças visuais */
+  position: relative; /* Permite posicionar elementos dentro do link */
+  cursor: pointer; /* Mostra a mãozinha ao passar o mouse */
+  padding: 12px 0; /* Adiciona espaço interno em cima e embaixo */
+}
+
+.nav-menu a::after {
+  content: ''; /* Cria um elemento decorativo vazio */
+  position: absolute; /* Permite posicionar a decoração em relação ao link */
+  bottom: 4px; /* Posiciona a decoração 4px acima da parte inferior */
+  left: 0; /* Alinha a decoração à esquerda */
+  width: 0; /* Deixa a decoração inicialmente sem largura */
+  height: 3px; /* Define a altura da decoração */
+  border-radius: 10px; /* Arredonda os cantos da decoração */
+  background: linear-gradient(90deg, var(--primary), var(--secondary)); /* Cria um degradê na decoração */
+  transition: var(--transition); /* Suaviza a animação da decoração */
+}
+
+.nav-menu a:hover::after {
+  width: 100%; /* Faz a decoração ocupar toda a largura do link */
+}
+
+.nav-menu a:hover {
+  color: var(--primary); /* Muda a cor do link ao passar o mouse */
+}
+
+.menu-toggle {
+  display: none; /* Esconde o botão de abrir o menu */
+  font-size: 1.8rem; /* Define o tamanho do ícone do botão */
+  background: none; /* Remove o fundo do botão */
+  border: none; /* Remove a borda do botão */
+  color: var(--text); /* Define a cor do ícone */
+}
+
+/* BANNER */
+
+.banner {
+  background: linear-gradient( /* Cria um fundo com degradê */
+    120deg, /* Define o ângulo do degradê */
+    #172554 0%, /* Define a cor inicial do degradê */
+    #1D4ED8 48%, /* Define a cor intermediária do degradê */
+    #06B6D4 100% /* Define a cor final do degradê */
+  );
+  color: #FFFFFF; /* Define a cor branca dos textos do banner */
+  padding: 65px 20px; /* Adiciona espaço interno em cima, embaixo e nas laterais */
+  border-radius: 20px; /* Arredonda os cantos do banner */
+  margin: 30px 0; /* Adiciona margem externa em cima e embaixo */
+  text-align: center; /* Centraliza o texto do banner */
+  display: flex; /* Organiza os elementos com Flexbox */
+  flex-direction: column; /* Coloca os elementos um abaixo do outro */
+  align-items: center; /* Centraliza os elementos horizontalmente */
+  justify-content: center; /* Centraliza os elementos verticalmente */
+  min-height: 270px; /* Define a altura mínima do banner */
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.28); /* Adiciona uma sombra ao banner */
+  position: relative; /* Permite posicionar elementos decorativos dentro do banner */
+  overflow: hidden; /* Esconde o que ultrapassa os limites do banner */
+}
+
+.banner::before {
+  content: ''; /* Cria um elemento decorativo vazio */
+  position: absolute; /* Permite posicionar o elemento dentro do banner */
+  width: 280px; /* Define a largura do elemento decorativo */
+  height: 280px; /* Define a altura do elemento decorativo */
+  background: rgba(255, 255, 255, 0.12); /* Define um fundo branco com transparência */
+  border-radius: 50%; /* Transforma o elemento em um círculo */
+  top: -150px; /* Posiciona o círculo acima do banner */
+  right: -70px; /* Posiciona o círculo parcialmente fora da direita */
+}
+
+.banner h1 {
+  font-size: 2.8rem; /* Define o tamanho do título do banner */
+  margin-bottom: 15px; /* Adiciona espaço abaixo do título */
+  position: relative; /* Permite posicionar o título em relação ao fluxo normal */
+}
+
+.banner p {
+  font-size: 1.2rem; /* Define o tamanho do texto do banner */
+  max-width: 600px; /* Define a largura máxima do texto */
+  opacity: 0.95; /* Deixa o texto levemente transparente */
+  position: relative; /* Mantém o texto em uma posição ajustável */
+}
+
+.banner .btn {
+  margin-top: 25px; /* Adiciona espaço acima do botão */
+  background: #FFFFFF; /* Define o fundo branco do botão */
+  color: var(--primary-dark); /* Define a cor do texto do botão */
+  padding: 13px 32px; /* Adiciona espaço interno no botão */
+  border-radius: 50px; /* Deixa o botão com cantos bem arredondados */
+  font-weight: 800; /* Deixa o texto do botão bem grosso */
+  transition: var(--transition); /* Suaviza as mudanças visuais do botão */
+  display: inline-block; /* Permite aplicar dimensões e espaçamentos ao botão */
+  position: relative; /* Permite ajustar a posição do botão */
+}
+
+.banner .btn:hover {
+  transform: translateY(-3px) scale(1.04); /* Move o botão para cima e aumenta um pouco seu tamanho */
+  background: #CFFAFE; /* Muda o fundo do botão ao passar o mouse */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao botão */
+}
+
+/* TÍTULOS */
+
+.section-title {
+  font-size: 2rem; /* Define o tamanho do título da seção */
+  margin: 40px 0 20px; /* Define as margens superior, laterais e inferior */
+  text-align: center; /* Centraliza o título */
+  color: #172554; /* Define a cor do título */
+}
+
+/* CATEGORIAS */
+
+.categories-grid {
+  display: grid; /* Organiza as categorias em uma grade */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Cria colunas automáticas com largura mínima de 120px */
+  gap: 20px; /* Define o espaço entre as categorias */
+  margin-bottom: 40px; /* Adiciona espaço abaixo da grade */
+}
+
+.category-item {
+  background: #FFFFFF; /* Define o fundo branco da categoria */
+  padding: 22px 10px; /* Adiciona espaço interno na categoria */
+  border: 1px solid #E0E7FF; /* Adiciona uma borda fina azul-clara */
+  border-radius: var(--radius); /* Arredonda os cantos da categoria */
+  text-align: center; /* Centraliza o texto da categoria */
+  box-shadow: var(--shadow); /* Adiciona uma sombra à categoria */
+  transition: var(--transition); /* Suaviza as mudanças visuais da categoria */
+  cursor: pointer; /* Mostra a mãozinha ao passar o mouse */
+}
+
+.category-item:hover {
+  transform: translateY(-5px); /* Move a categoria 5px para cima ao passar o mouse */
+  border-color: var(--primary); /* Muda a cor da borda para a cor principal */
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.18); /* Adiciona uma sombra ao passar o mouse */
+}
+
+.category-item.active {
+  border: 2px solid var(--primary); /* Adiciona uma borda de 2px na cor principal */
+  background: #DBEAFE; /* Muda o fundo da categoria selecionada */
+}
+
+.category-item i {
+  font-size: 2.5rem; /* Define o tamanho do ícone da categoria */
+  color: var(--primary); /* Define a cor do ícone */
+  margin-bottom: 8px; /* Adiciona espaço abaixo do ícone */
+}
+
+.category-item span {
+  display: block; /* Faz o texto ocupar uma linha própria */
+  font-weight: 600; /* Deixa o texto mais grosso */
+}
+
+/* PRODUTOS */
+
+.products-grid {
+  display: grid; /* Organiza os produtos em uma grade */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Cria colunas automáticas com largura mínima de 220px */
+  gap: 25px; /* Define o espaço entre os produtos */
+  margin-bottom: 50px; /* Adiciona espaço abaixo da grade */
+}
+
+.product-card {
+  background: #FFFFFF; /* Define o fundo branco do cartão */
+  border: 1px solid #E2E8F0; /* Adiciona uma borda fina ao cartão */
+  border-radius: var(--radius); /* Arredonda os cantos do cartão */
+  box-shadow: var(--shadow); /* Adiciona uma sombra ao cartão */
+  overflow: hidden; /* Esconde o conteúdo que ultrapassa os limites do cartão */
+  transition: var(--transition); /* Suaviza as mudanças visuais */
+  display: flex; /* Organiza os elementos com Flexbox */
+  flex-direction: column; /* Coloca os elementos um abaixo do outro */
+}
+
+.product-card:hover {
+  transform: translateY(-6px); /* Move o cartão 6px para cima ao passar o mouse */
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.18); /* Aumenta a sombra do cartão ao passar o mouse */
+}
+
+.product-card img {
+  width: 100%; /* Faz a imagem ocupar toda a largura do cartão */
+  height: 200px; /* Define a altura da imagem */
+  object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorcer */
+  background: var(--light-gray); /* Define um fundo cinza-claro para a imagem */
+}
+
+.product-info {
+  padding: 15px; /* Adiciona espaço interno nas informações do produto */
+  flex: 1; /* Faz a área de informações ocupar o espaço disponível */
+  display: flex; /* Organiza as informações com Flexbox */
+  flex-direction: column; /* Coloca as informações uma abaixo da outra */
+}
+
+.product-info h3 {
+  font-size: 1rem; /* Define o tamanho do título do produto */
+  margin-bottom: 8px; /* Adiciona espaço abaixo do título */
+}
+
+.product-info .price {
+  font-size: 1.4rem; /* Define o tamanho do preço atual */
+  font-weight: 700; /* Deixa o preço em negrito */
+  color: var(--primary-dark); /* Define a cor do preço atual */
+  margin: 8px 0; /* Adiciona espaço acima e abaixo do preço */
+}
+
+.product-info .old-price {
+  font-size: 0.9rem; /* Define o tamanho do preço antigo */
+  color: var(--gray); /* Define a cor cinza do preço antigo */
+  text-decoration: line-through; /* Risca o preço antigo */
+  margin-left: 8px; /* Adiciona espaço à esquerda do preço antigo */
+}
+
+.product-info .rating {
+  color: #F59E0B; /* Define a cor amarela da avaliação */
+  margin-bottom: 10px; /* Adiciona espaço abaixo da avaliação */
+}
+
+.product-info .btn-add,
+.btn-detail {
+  border: none; /* Remove a borda dos botões */
+  padding: 11px 0; /* Adiciona espaço interno em cima e embaixo */
+  border-radius: var(--radius); /* Arredonda os cantos dos botões */
+  font-weight: 700; /* Deixa o texto dos botões em negrito */
+  transition: var(--transition); /* Suaviza as mudanças visuais dos botões */
+  margin-top: 8px; /* Adiciona espaço acima dos botões */
+}
+
+.product-info .btn-add {
+  background: linear-gradient( /* Cria um fundo com degradê no botão */
+    90deg, /* Define a direção horizontal do degradê */
+    var(--primary), /* Define a cor inicial do degradê */
+    var(--secondary) /* Define a cor final do degradê */
+  );
+  color: white; /* Define a cor branca do texto */
+}
+
+.product-info .btn-add:hover {
+  transform: translateY(-2px); /* Move o botão 2px para cima ao passar o mouse */
+  filter: brightness(0.95); /* Escurece levemente o botão */
+}
+
+.btn-detail {
+  background: #E2E8F0; /* Define o fundo cinza-claro do botão de detalhes */
+  color: #334155; /* Define a cor do texto do botão */
+}
+
+.btn-detail:hover {
+  background: #CBD5E1; /* Escurece o fundo do botão ao passar o mouse */
+}
+
+/* DETALHES DO PRODUTO */
+
+#product-detail {
+  margin-bottom: 50px; /* Adiciona espaço abaixo da seção de detalhes */
+}
+
+#product-detail-content {
+  background: #FFFFFF; /* Define o fundo branco da área de detalhes */
+  padding: 30px; /* Adiciona espaço interno na área de detalhes */
+  border-radius: var(--radius); /* Arredonda os cantos da área de detalhes */
+  box-shadow: var(--shadow); /* Adiciona uma sombra à área de detalhes */
+}
+
+#back-to-products {
+  background: var(--gray); /* Define o fundo cinza do botão de voltar */
+  color: white; /* Define a cor branca do texto */
+  border: none; /* Remove a borda do botão */
+  padding: 10px 20px; /* Adiciona espaço interno no botão */
+  border-radius: var(--radius); /* Arredonda os cantos do botão */
+  font-weight: 600; /* Deixa o texto do botão mais grosso */
+  transition: var(--transition); /* Suaviza as mudanças visuais do botão */
+}
+
+#back-to-products:hover {
+  background: #475569; /* Escurece o fundo do botão ao passar o mouse */
+}
+
+/* CARRINHO */
+
+.cart-overlay {
+  display: none; /* Esconde a camada do carrinho inicialmente */
+  position: fixed; /* Fixa a camada na tela */
+  inset: 0; /* Faz a camada ocupar toda a tela */
+  background: rgba(15, 23, 42, 0.65); /* Cria um fundo escuro com transparência */
+  z-index: 200; /* Coloca a camada acima de outros elementos */
+  justify-content: flex-end; /* Alinha o carrinho à direita */
+}
+
+.cart-overlay.open {
+  display: flex; /* Exibe a camada do carrinho quando está aberta */
+}
+
+.cart-sidebar {
+  background: #FFFFFF; /* Define o fundo branco do painel do carrinho */
+  width: 100%; /* Define a largura como 100% do espaço disponível */
+  max-width: 400px; /* Limita a largura máxima do painel a 400px */
+  height: 100%; /* Faz o painel ocupar toda a altura da tela */
+  padding: 25px; /* Adiciona espaço interno no painel */
+  display: flex; /* Organiza os elementos com Flexbox */
+  flex-direction: column; /* Coloca os elementos um abaixo do outro */
+  animation: slidein 0.3s ease; /* Aplica uma animação de entrada de 0,3 segundo */
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(100%); /* Inicia a animação com o painel fora da tela à direita */
+  }
+
+  to {
+    transform: translateX(0); /* Termina a animação com o painel na posição normal */
+  }
+}
+
+.cart-sidebar h2 {
+  display: flex; /* Organiza o título e outros elementos em uma linha */
+  justify-content: space-between; /* Distribui os elementos com espaço entre eles */
+  align-items: center; /* Alinha os elementos verticalmente ao centro */
+  border-bottom: 2px solid var(--light-gray); /* Adiciona uma borda abaixo do título */
+  padding-bottom: 15px; /* Adiciona espaço abaixo do título */
+  margin-bottom: 20px; /* Adiciona espaço abaixo do cabeçalho do carrinho */
+}
+
+.cart-sidebar .close-cart {
+  background: none; /* Remove o fundo do botão de fechar */
+  border: none; /* Remove a borda do botão */
+  font-size: 1.8rem; /* Define o tamanho do ícone de fechar */
+  color: var(--gray); /* Define a cor cinza do botão */
+  transition: var(--transition); /* Suaviza as mudanças visuais */
+}
+
+.cart-sidebar .close-cart:hover {
+  color: var(--danger); /* Muda a cor do botão para vermelho ao passar o mouse */
+}
+
+.cart-item {
+  display: flex; /* Organiza os elementos do produto em uma linha */
+  gap: 15px; /* Define o espaço entre os elementos */
+  padding: 12px 0; /* Adiciona espaço interno em cima e embaixo */
+  border-bottom: 1px solid var(--light-gray); /* Adiciona uma borda abaixo do item */
+  align-items: center; /* Alinha os elementos verticalmente ao centro */
+}
+
+.cart-item img {
+  width: 60px; /* Define a largura da imagem do produto */
+  height: 60px; /* Define a altura da imagem do produto */
+  object-fit: cover; /* Ajusta a imagem sem distorcer */
+  border-radius: var(--radius); /* Arredonda os cantos da imagem */
+  background: var(--light-gray); /* Define um fundo cinza-claro para a imagem */
+}
+
+.cart-item-details {
+  flex: 1; /* Faz os detalhes ocuparem o espaço disponível */
+}
+
+.cart-item-details h4 {
+  font-size: 0.95rem; /* Define o tamanho do título do produto */
+}
+
+.cart-item-details .item-price {
+  color: var(--primary-dark); /* Define a cor do preço do produto */
+  font-weight: 700; /* Deixa o preço em negrito */
+}
+
+.cart-item .remove-item {
+  background: none; /* Remove o fundo do botão de remover */
+  border: none; /* Remove a borda do botão */
+  color: var(--danger); /* Define a cor vermelha do botão */
+  font-size: 1.2rem; /* Define o tamanho do ícone de remover */
+}
+
+.cart-total {
+  margin-top: auto; /* Empurra o total para a parte inferior do painel */
+  padding-top: 20px; /* Adiciona espaço acima do total */
+  border-top: 2px solid var(--light-gray); /* Adiciona uma borda acima do total */
+  font-size: 1.3rem; /* Define o tamanho do texto do total */
+  font-weight: 700; /* Deixa o texto do total em negrito */
+  display: flex; /* Organiza os elementos do total em uma linha */
+  justify-content: space-between; /* Separa os elementos do total */
+}
+
+.cart-actions {
+  display: flex; /* Organiza os botões de ação em uma linha */
+  gap: 10px; /* Define o espaço entre os botões */
+  margin-top: 15px; /* Adiciona espaço acima dos botões */
+}
+
+.cart-actions button {
+  flex: 1; /* Faz os botões ocuparem espaços iguais */
+  padding: 12px; /* Adiciona espaço interno nos botões */
+  border: none; /* Remove a borda dos botões */
+  border-radius: var(--radius); /* Arredonda os cantos dos botões */
+  font-weight: 600; /* Deixa o texto dos botões mais grosso */
+  transition: var(--transition); /* Suaviza as mudanças visuais */
+}
+
+.btn-checout {
+  background: var(--primary); /* Define o fundo do botão de finalizar compra */
+  color: white; /* Define a cor branca do texto */
+}
+
+.btn-checout:hover {
+  background: var(--primary-dark); /* Escurece o botão ao passar o mouse */
+}
+
+.btn-clear {
+  background: #E2E8F0; /* Define o fundo cinza-claro do botão de limpar */
+  color: var(--text); /* Define a cor do texto do botão */
+}
+
+.btn-clear:hover {
+  background: #CBD5E1; /* Escurece o fundo do botão ao passar o mouse */
+}
+
+/* RODAPÉ */
+
+footer {
+  background: #172554; /* Define o fundo azul-escuro do rodapé */
+  color: #FFFFFF; /* Define a cor branca dos textos do rodapé */
+  padding: 40px 0 20px; /* Adiciona espaço interno em cima e embaixo */
+  margin-top: 40px; /* Adiciona espaço acima do rodapé */
+}
+
+.footer-grid {
+  display: grid; /* Organiza o conteúdo do rodapé em uma grade */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Cria colunas automáticas com largura mínima de 180px */
+  gap: 30px; /* Define o espaço entre as colunas */
+  margin-bottom: 30px; /* Adiciona espaço abaixo da grade */
+}
+
+.footer-grid h4 {
+  margin-bottom: 15px; /* Adiciona espaço abaixo dos títulos do rodapé */
+  color: #67E8F9; /* Define a cor azul-clara dos títulos */
+}
+
+.footer-grid ul li {
+  margin-bottom: 8px; /* Adiciona espaço abaixo de cada item da lista */
+}
+
+.footer-grid ul li a {
+  color: #CBD5E1; /* Define a cor cinza-clara dos links do rodapé */
+  transition: var(--transition); /* Suaviza as mudanças visuais dos links */
+}
+
+.footer-grid ul li a:hover {
+  color: #67E8F9; /* Muda a cor do link para azul-claro ao passar o mouse */
+}
+
+.footer-botton {
+  text-align: center; /* Centraliza o texto do rodapé */
+  padding-top: 20px; /* Adiciona espaço interno acima do texto */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Adiciona uma borda superior branca com transparência */
+  color: #CBD5E1; /* Define a cor cinza-clara do texto */
+  font-size: 0.9rem; /* Define o tamanho da fonte do texto */
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) { /* Aplica os estilos em telas de até 768px de largura */
+  .menu-toggle {
+    display: block; /* Exibe o botão de abrir o menu */
+  }
+
+  .nav-menu {
+    display: none; /* Esconde o menu de navegação inicialmente */
+    flex-direction: column; /* Organiza os links um abaixo do outro */
+    align-items: center; /* Centraliza os links horizontalmente */
+    gap: 15px; /* Define o espaço entre os links */
+    padding: 15px 0; /* Adiciona espaço interno em cima e embaixo */
+    width: 100%; /* Faz o menu ocupar toda a largura disponível */
+  }
+
+  .nav-menu.open {
+    display: flex; /* Exibe o menu quando a classe open é adicionada */
+  }
+
+  .header-content {
+    flex-wrap: wrap; /* Permite que os elementos do cabeçalho passem para outra linha */
+  }
+
+  .search-bar {
+    order: 3; /* Coloca a barra de busca na terceira posição */
+    flex-basis: 100%; /* Faz a barra de busca ocupar toda a largura disponível */
+    max-width: 100%; /* Permite que a barra de busca ocupe até 100% da largura */
+  }
+
+  .banner h1 {
+    font-size: 2rem; /* Reduz o tamanho do título do banner */
+  }
+
+  .banner p {
+    font-size: 1rem; /* Reduz o tamanho do texto do banner */
+  }
+
+  .products-grid {
+    grid-template-columns: repeat( /* Define as colunas da grade de produtos */
+      auto-fill, /* Cria automaticamente quantas colunas couberem */
+      minmax(160px, 1fr) /* Define largura mínima de 160px para cada coluna */
+    );
+    gap: 15px; /* Define o espaço entre os produtos */
+  }
+
+  .cart-sidebar {
+    max-width: 100%; /* Permite que o carrinho ocupe toda a largura da tela */
+  }
+
+  #product-detail-content {
+    grid-template-columns: 1fr !important; /* Coloca o conteúdo em uma única coluna e prioriza essa regra */
+    padding: 20px; /* Reduz o espaço interno da área de detalhes */
+  }
+}
+
+@media (max-width: 480px) { /* Aplica os estilos em telas de até 480px de largura */
+  .logo {
+    font-size: 1.4rem; /* Reduz o tamanho da logo */
+  }
+
+  .header-actions a {
+    font-size: 1.2rem; /* Reduz o tamanho dos ícones do cabeçalho */
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr); /* Organiza as categorias em 3 colunas iguais */
+    gap: 10px; /* Define o espaço entre as categorias */
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* Organiza os produtos em 2 colunas iguais */
+    gap: 12px; /* Define o espaço entre os produtos */
+  }
+
+  .banner {
+    padding: 40px 15px; /* Reduz o espaço interno do banner */
+    min-height: 180px; /* Define a altura mínima do banner em telas pequenas */
+  }
+
+  .banner h1 {
+    font-size: 1.6rem; /* Reduz o tamanho do título do banner */
+  }
+
+  .product-card img {
+    height: 150px; /* Reduz a altura das imagens dos produtos */
+  }
+}

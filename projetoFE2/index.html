@@ -1,0 +1,171 @@
+<!DOCTYPE html> <!-- Informa ao navegador que o documento utiliza HTML5 -->
+<html lang="pt-BR" dir="ltr"> <!-- Define o idioma como português do Brasil e o texto da esquerda para a direita -->
+<!--
+========================================
+                CABEÇALHO
+========================================
+-->
+<head> <!-- Início do cabeçalho técnico da página -->
+    <meta charset="utf-8"> <!-- Define a codificação de caracteres para aceitar acentos e caracteres especiais -->
+    <title>Loja Virtual - E-commerce</title> <!-- Define o título que aparece na aba do navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Importa os ícones do Font Awesome -->
+    <link rel="stylesheet" href="style.css"> <!-- Conecta o arquivo CSS externo chamado style.css -->
+</head> <!-- Finaliza o cabeçalho da página -->
+<body> <!-- Início do conteúdo visível da página -->
+    <header> <!-- Início do cabeçalho principal do site -->
+        <div class="container"> <!-- Cria um container para organizar o conteúdo -->
+            <div class="header-content"> <!-- Agrupa os elementos do cabeçalho -->
+                <div class="logo"> <!-- Área destinada ao logotipo/nome da loja -->
+                    <i class="fas fa-store"></i> <!-- Exibe o ícone de uma loja -->
+                    FIFASTORE <!-- Nome exibido no logotipo -->
+                </div> <!-- Finaliza a área do logotipo -->
+                <div class="search-bar"> <!-- Área da barra de pesquisa -->
+                    <input type="text" placeholder="Buscar produtos..." id="searchInput"> <!-- Campo onde o usuário pode pesquisar produtos -->
+                    <button id="searchBtn"> <!-- Botão utilizado para realizar a pesquisa -->
+                        <i class="fas fa-search"></i> <!-- Exibe o ícone de pesquisa -->
+                    </button> <!-- Finaliza o botão de pesquisa -->
+                </div> <!-- Finaliza a barra de pesquisa -->
+                <div class="header-actions"> <!-- Área dos botões e ações do cabeçalho -->
+                    <a href="#" id="cartIcon"> <!-- Link utilizado para abrir o carrinho -->
+                        <i class="fas fa-shopping-cart"></i> <!-- Exibe o ícone do carrinho de compras -->
+                        <span class="cart-count" id="cart-count">0</span> <!-- Mostra a quantidade de produtos no carrinho -->
+                    </a> <!-- Finaliza o link do carrinho -->
+                    <button class="menu-toggle" id="menuToggle"> <!-- Botão para abrir o menu em telas menores -->
+                        <i class="fas fa-bars"></i> <!-- Exibe o ícone de menu -->
+                    </button> <!-- Finaliza o botão do menu -->
+                </div> <!-- Finaliza as ações do cabeçalho -->
+            </div> <!-- Finaliza o conteúdo do cabeçalho -->
+        </div> <!-- Finaliza o container do cabeçalho -->
+        <nav> <!-- Início do menu de navegação -->
+            <div class="container"> <!-- Container utilizado para organizar o menu -->
+                <ul class="nav-menu" id="navMenu"> <!-- Lista que contém os itens do menu -->
+                    <li> <!-- Primeiro item do menu -->
+                        <a href="#" data-category="all">Home</a> <!-- Link para mostrar todos os produtos -->
+                    </li> <!-- Finaliza o primeiro item -->
+                    <li> <!-- Segundo item do menu -->
+                        <a href="#" data-category="seleções">Seleções</a> <!-- Link para filtrar produtos masculinos -->
+                    </li> <!-- Finaliza o segundo item -->
+                    <li> <!-- Terceiro item do menu -->
+                        <a href="#" data-category="clubes">Clubes</a> <!-- Link para filtrar produtos femininos -->
+                    </li> <!-- Finaliza o terceiro item -->
+                    <li> <!-- Quarto item do menu -->
+                        <a href="#" data-category="retrô">Retrô</a> <!-- Link para filtrar produtos infantis -->
+                    </li> <!-- Finaliza o quarto item -->
+                    <li> <!-- Quinto item do menu -->
+                        <a href="#" data-category="treino">Treino</a> <!-- Link para filtrar acessórios -->
+                    </li> <!-- Finaliza o quinto item -->
+                    <li> <!-- Sexto item do menu -->
+                        <a href="#" data-category="goleiros">Goleiros</a> <!-- Link para filtrar produtos esportivos -->
+                    </li> <!-- Finaliza o sexto item -->
+                </ul> <!-- Finaliza a lista de navegação -->
+            </div> <!-- Finaliza o container do menu -->
+        </nav> <!-- Finaliza o menu de navegação -->
+    </header> <!-- Finaliza o cabeçalho principal -->
+    <main class="container"> <!-- Início do conteúdo principal da página -->
+        <section class="banner"> <!-- Seção utilizada para criar o banner principal -->
+            <h1>FIFA STORE</h1> <!-- Título principal do banner -->
+            <p>camisas de times com até 40% de desconto. Aproveite!</p> <!-- Texto de apresentação da promoção -->
+            <a href="#" class="btn">Ver Ofertas</a> <!-- Botão/link para visualizar as ofertas -->
+        </section> <!-- Finaliza o banner -->
+        <h2 class="section-title">Categorias</h2> <!-- Título da seção de categorias -->
+        <div class="categories-grid" id="categoriesGrid"> <!-- Container que organiza as categorias -->
+            <div class="category-item active" data_category="all"> <!-- Categoria para mostrar todos os produtos -->
+                <i class="fas fa-th"></i> <!-- Ícone que representa todos os produtos -->
+                <span>Todos</span> <!-- Nome da categoria -->
+            </div> <!-- Finaliza a categoria Todos -->
+            <div class="category-item active" data_category="Clubes"> <!-- Categoria de produtos masculinos -->
+              <i class="fa-solid fa-futbol"></i> <!-- Ícone de camiseta -->
+                <span>Clubes</span> <!-- Nome da categoria -->
+            </div> <!-- Finaliza a categoria Masculino -->
+            <div class="category-item active" data_category="Seleções"> <!-- Categoria de produtos femininos -->
+                <i class="fa-solid fa-globe"></i> <!-- Ícone que representa a categoria feminina -->
+                <span>Seleções</span> <!-- Nome da categoria -->
+            </div> <!-- Finaliza a categoria Feminino -->
+            <div class="category-item active" data_category="Retrô"> <!-- Categoria de produtos infantis -->
+                <i class="fa-solid fa-shirt"></i> <!-- Ícone que representa crianças -->
+                <span>Retrô</span> <!-- Nome da categoria -->
+            </div> <!-- Finaliza a categoria Infantil -->
+            <div class="category-item active" data_category="Treino"> <!-- Categoria de acessórios -->
+                <i class="fa-solid fa-person-running"></i> <!-- Ícone que representa um acessório -->
+                <span>treino</span> <!-- Nome da categoria -->
+            </div> <!-- Finaliza a categoria Acessórios -->
+            <div class="category-item active" data_category="Goleiros"> <!-- Categoria de esportes -->
+                <i class="fa-solid fa-mitten"></i> <!-- Ícone de futebol -->
+                <span>Goleiros</span> <!-- Nome da categoria -->
+            </div> <!-- Finaliza a categoria Esportes -->
+        </div> <!-- Finaliza o container das categorias -->
+        <h2 class="section-title" id="productsTitle">Produtos em Destaque</h2> <!-- Título da seção de produtos -->
+        <div class="products-grid" id="productGrid"> <!-- Container onde os produtos serão inseridos pelo JavaScript -->
+        </div> <!-- Finaliza a área dos produtos -->
+        <section id="product-detail" style="display:none"> <!-- Seção de detalhes do produto, inicialmente escondida -->
+            <button id="back-to-products" class="btn" style="margin-botton:20px;"> <!-- Botão para voltar à lista de produtos -->
+                <i class="fas fa-arrow-left">Voltar</i> <!-- Ícone de seta e texto do botão -->
+            </button> <!-- Finaliza o botão de voltar -->
+            <div id="product-detail-content"> <!-- Área onde os detalhes do produto serão exibidos -->
+            </div> <!-- Finaliza a área dos detalhes -->
+        </section> <!-- Finaliza a seção de detalhes -->
+    </main> <!-- Finaliza o conteúdo principal -->
+    <footer> <!-- Início do rodapé da página -->
+        <div class="container"> <!-- Container para organizar o conteúdo do rodapé -->
+            <div class="footer-grid"> <!-- Grid que organiza as colunas do rodapé -->
+                <div> <!-- Primeira coluna do rodapé -->
+                    <h4>Institucional</h4> <!-- Título da primeira coluna -->
+                    <ul> <!-- Lista de links institucionais -->
+                        <li><a href="#">Sobre</a></li> <!-- Link para informações sobre a loja -->
+                        <li><a href="#">Trabalhe conosco</a></li> <!-- Link para oportunidades de trabalho -->
+                        <li><a href="#">Política de privacidade</a></li> <!-- Link para política de privacidade -->
+                    </ul> <!-- Finaliza a lista -->
+                </div> <!-- Finaliza a primeira coluna -->
+                <div> <!-- Segunda coluna do rodapé -->
+                    <h4>Atendimento</h4> <!-- Título da segunda coluna -->
+                    <ul> <!-- Lista de atendimento -->
+                        <li><a href="#">Central de ajuda</a></li> <!-- Link para a central de ajuda -->
+                        <li><a href="#">Entregas</a></li> <!-- Link com informações sobre entregas -->
+                        <li><a href="#">Trocas e devoluções</a></li> <!-- Link com informações sobre trocas e devoluções -->
+                    </ul> <!-- Finaliza a lista -->
+                </div> <!-- Finaliza a segunda coluna -->
+                <div> <!-- Terceira coluna do rodapé -->
+                    <h4>Redes Sociais</h4> <!-- Título da terceira coluna -->
+                    <ul> <!-- Lista de redes sociais -->
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li> <!-- Link para o Instagram -->
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li> <!-- Link para o Facebook -->
+                        <li><a href="#"><i class="fab fa-youtube"></i> Youtube</a></li> <!-- Link para o YouTube -->
+                    </ul> <!-- Finaliza a lista de redes sociais -->
+                </div> <!-- Finaliza a terceira coluna -->
+                <div> <!-- Quarta coluna do rodapé -->
+                    <h4>Formas de Pagamento</h4> <!-- Título da quarta coluna -->
+                    <ul> <!-- Lista das formas de pagamento -->
+                        <li><i class="fas fa-credit-card"></i> Cartão de Crédito</li> <!-- Forma de pagamento com cartão de crédito -->
+                        <li><i class="fas fa-barcode"></i> Boleto</li> <!-- Forma de pagamento por boleto -->
+                        <li><i class="fas fa-qrcode"></i> PIX</li> <!-- Forma de pagamento por PIX -->
+                    </ul> <!-- Finaliza a lista de pagamentos -->
+                </div> <!-- Finaliza a quarta coluna -->
+            </div> <!-- Finaliza o grid do rodapé -->
+            <div class="footer-botton"> <!-- Área inferior do rodapé -->
+                &copy; 2026 Protótipo TI - Todos os direitos reservados. <!-- Texto de direitos autorais -->
+            </div> <!-- Finaliza a área inferior do rodapé -->
+        </div> <!-- Finaliza o container do rodapé -->
+    </footer> <!-- Finaliza o rodapé -->
+    <div class="cart-overlay" id="cartOverlay"> <!-- Fundo sobreposto que aparece quando o carrinho é aberto -->
+        <div class="cart-sidebar"> <!-- Barra lateral que contém o carrinho -->
+            <h2>Carrinho <!-- Título do carrinho -->
+                <button class="close-cart" id="closeCart"> <!-- Botão para fechar o carrinho -->
+                    <i class="fas fa-times"></i> <!-- Ícone de X para fechar -->
+                </button> <!-- Finaliza o botão de fechar -->
+            </h2> <!-- Finaliza o título do carrinho -->
+            <div id="cartItens"> <!-- Área onde os itens adicionados ao carrinho serão exibidos -->
+                <p style="text-align:center; color: var(--gray);">Seu carrinho está vazio.</p> <!-- Mensagem exibida quando não existem produtos no carrinho -->
+            </div> <!-- Finaliza a área dos itens do carrinho -->
+            <div class="cart-total"> <!-- Área que mostra o valor total da compra -->
+                <span>Total:</span> <!-- Texto indicando o total -->
+                <span id="cartTotalPrice">R$ 0,00</span> <!-- Valor total inicial do carrinho -->
+            </div> <!-- Finaliza a área do total -->
+            <div class="cart-actions"> <!-- Área dos botões de ação do carrinho -->
+                <button class="btn-checkout" id="checkoutBtn">Finalizar Compra</button> <!-- Botão para finalizar a compra -->
+                <button class="btn-clear" id="clearCarttBtn">Limpar</button> <!-- Botão para limpar o carrinho -->
+            </div> <!-- Finaliza os botões do carrinho -->
+        </div> <!-- Finaliza a barra lateral do carrinho -->
+    </div> <!-- Finaliza o fundo do carrinho -->
+    <script src="script.js"></script> <!-- Importa o arquivo JavaScript responsável pelas funções da loja -->
+</body> <!-- Finaliza o corpo da página -->
+</html> <!-- Finaliza o documento HTML -->
