@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!-- Declaração do tipo de documento (DTD) para HTML5. Indica ao navegador que este arquivo deve ser interpretado como um documento HTML na versão mais recente. -->
+<html lang="pt-BR">
+<!-- Tag raiz do documento. O atributo 'lang' define o idioma principal da página como Português do Brasil, o que é essencial para ferramentas de acessibilidade (leitores de tela) e para otimização em mecanismos de busca (SEO). -->
+
+<head>
+  <!-- O elemento <head> contém metadados (informações sobre o documento) que não são exibidos diretamente na página, mas são processados pelo navegador e por mecanismos de busca. -->
+
+  <meta charset="UTF-8">
+  <!-- Define a codificação de caracteres como UTF-8. Isso garante que todos os caracteres especiais (como acentos, cedilha, emojis) sejam exibidos corretamente, sem aparecerem como caracteres estranhos (mojibake). -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Configura a viewport para dispositivos móveis. 'width=device-width' faz a largura da página se ajustar à largura da tela do dispositivo. 'initial-scale=1.0' define o nível de zoom inicial como 100%, garantindo que o site seja responsivo e legível em smartphones e tablets. -->
+
+  <title>Loja Virtual - E-commerce</title>
+  <!-- Define o título da página, que aparece na aba do navegador e nos resultados de pesquisa. É um fator importante para SEO e identificação do usuário. -->
+
+  <!-- Font Awesome
+  O link carrega a biblioteca de ícones vetoriais Font Awesome, versão 6.0.0-beta3, diretamente de um servidor CDN da Cloudflare, utilizando o arquivo all.min.css para aplicar ícones via HTML. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Este <link> importa o CSS da biblioteca Font Awesome, que fornece ícones como 'fa-store' e 'fa-search'. O CDN (Content Delivery Network) acelera o carregamento ao servir o arquivo de um servidor próximo ao usuário. -->
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Importa o arquivo de estilos personalizado (style.css). Isso segue a boa prática de separar a estrutura (HTML) da apresentação (CSS), facilitando a manutenção e a reutilização do código. -->
+
+</head>
+<!-- Fim da seção de cabeçalho e início do corpo da página. -->
+
+<body>
+  <!-- O elemento <body> contém todo o conteúdo visual e interativo da página, como textos, imagens, botões e formulários. -->
+
+  <!-- ========== HEADER ========== -->
+  <!-- Comentário de seção para organizar visualmente o código. Marca o início do cabeçalho da página. -->
+  <header>
+    <!-- Tag semântica do HTML5 que representa o cabeçalho de uma seção ou do site inteiro. Geralmente contém logotipo, navegação e barra de pesquisa. -->
+
+    <div class="container">
+      <!-- <div> genérica com a classe 'container'. No CSS, essa classe geralmente centraliza o conteúdo horizontalmente e define uma largura máxima, garantindo que o conteúdo não fique "grudado" nas bordas da tela. -->
+
+      <div class="header-content">
+        <!-- Div que agrupa os elementos principais do cabeçalho: logotipo, barra de pesquisa e ações do usuário (carrinho). A classe 'header-content' é usada no CSS para aplicar um layout flexível (display: flex) e alinhar esses itens horizontalmente. -->
+
+        <div class="logo">
+          <!-- Div com a classe 'logo'. Contém a identidade visual do site. -->
+          <i class="fas fa-store"></i> Protótipo
+          <!-- <i> é uma tag inline usada para ícones. Aqui, 'fas fa-store' é uma classe do Font Awesome que renderiza o ícone de uma loja. O texto "Protótipo" é o nome da marca, que aparece ao lado do ícone. -->
+        </div>
+
+        <div class="search-bar">
+          <!-- Div que contém a barra de pesquisa. A classe 'search-bar' ajuda a estilizar o campo e o botão juntos, geralmente como um grupo de input. -->
+          <input type="text" placeholder="Buscar produtos..." id="searchInput">
+          <!-- Campo de entrada de texto. 'type="text"' define que é um campo de texto simples. 'placeholder' exibe um texto interno (cinza) orientando o usuário. O 'id' (searchInput) é essencial para o JavaScript acessar o valor digitado e realizar a busca. -->
+          <button id="searchBtn"><i class="fas fa-search"></i></button>
+          <!-- Botão para acionar a busca. O 'id' (searchBtn) permite que o JavaScript adicione um evento de clique. O ícone de lupa (fa-search) indica visualmente a função do botão. -->
+        </div>
+
+        <div class="header-actions">
+          <!-- Div que agrupa as ações do usuário, como carrinho e menu mobile. -->
+          <a href="#" id="cartIcon">
+            <!-- Tag <a> (âncora) que simula um link. 'href="#"' previne o recarregamento da página. O 'id' (cartIcon) é usado no JavaScript para abrir o sidebar do carrinho. -->
+            <i class="fas fa-shopping-cart"></i>
+            <!-- Ícone de carrinho de compras. -->
+            <span class="cart-count" id="cartCount">0</span>
+            <!-- <span> para exibir a quantidade de itens no carrinho. A classe 'cart-count' estiliza o número como um selo (badge) vermelho sobre o ícone. O 'id' (cartCount) é atualizado via JavaScript sempre que o carrinho é modificado. -->
+          </a>
+          <button class="menu-toggle" id="menuToggle">
+            <!-- Botão para abrir/fechar o menu de navegação em dispositivos móveis (menu hambúrguer). A classe 'menu-toggle' é estilizada no CSS para aparecer apenas em telas pequenas. O 'id' (menuToggle) é usado no JavaScript para adicionar um evento de clique. -->
+            <i class="fas fa-bars"></i>
+            <!-- Ícone de três barras horizontais, universalmente reconhecido como "menu hambúrguer". -->
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navegação -->
+    <nav>
+      <!-- Tag semântica que define um conjunto de links de navegação principal. -->
+      <div class="container">
+        <!-- Container interno para manter a consistência de alinhamento com o cabeçalho. -->
+        <ul class="nav-menu" id="navMenu">
+          <!-- Lista não ordenada (<ul>) que contém os itens do menu. A classe 'nav-menu' e o 'id' (navMenu) são usados para estilização e para controle de exibição (mostrar/ocultar em mobile) via JavaScript. -->
+          <li><a href="#" data-category="all">Home</a></li>
+          <!-- Cada item da lista (<li>) contém um link (<a>). O atributo 'data-category' é um atributo personalizado (data-*) que armazena o nome da categoria. Ele será lido pelo JavaScript para filtrar os produtos. 'all' significa "todos os produtos". -->
+          <li><a href="#" data-category="masculino">Masculino</a></li>
+          <li><a href="#" data-category="feminino">Feminino</a></li>
+          <li><a href="#" data-category="infantil">Infantil</a></li>
+          <li><a href="#" data-category="acessorios">Acessórios</a></li>
+          <li><a href="#" data-category="esportes">Esportes</a></li>
+          <!-- Cada link contém a categoria correspondente, que será usada como filtro na função de exibição de produtos. -->
+        </ul>
+      </div>
+    </nav>
+
+
+
+  </header>
+
+  <main class="container">
+    <!-- A tag <main> define o conteúdo principal da página. Deve haver apenas um <main> por documento. A classe 'container' é reaplicada para manter a largura consistente com o cabeçalho. -->
+
+    <!-- ========== BANNER ========== -->
+    <section class="banner">
+      <!-- <section> é uma tag semântica para agrupar conteúdo temático. A classe 'banner' é usada para criar um destaque visual (geralmente com fundo colorido ou imagem) contendo uma chamada principal para a loja. -->
+      <h1>Protótipo TI 2026</h1>
+      <!-- <h1> é o título de maior nível hierárquico. Deve ser único por página e descrever o assunto principal. Ajuda significativamente no SEO. -->
+      <p>Roupas leves, estilosas e com até 40% de desconto. Aproveite!</p>
+      <!-- Parágrafo que complementa o título com uma chamada promocional. -->
+      <a href="#" class="btn">Ver Ofertas</a>
+      <!-- Botão de Call-to-Action (CTA). A classe 'btn' é uma classe utilitária que estiliza o link como um botão arredondado e colorido. 'href="#"' indica um link temporário. -->
+    </section>
+
+    <!-- ========== CATEGORIAS ========== -->
+    <h2 class="section-title">Categorias</h2>
+    <!-- <h2> é um subtítulo. A classe 'section-title' é usada para padronizar a aparência (tamanho, margem, cor) de todos os títulos de seção na página. -->
+
+    <div class="categories-grid" id="categoriesGrid">
+      <!-- Div que agrupa os filtros de categoria em uma grade (grid). A classe 'categories-grid' organiza os itens horizontalmente. O 'id' (categoriesGrid) pode ser usado para manipulação via JavaScript, embora aqui seja mais para estilização. -->
+      <div class="category-item active" data-category="all"><i class="fas fa-th"></i><span>Todos</span></div>
+      <!-- Cada categoria é um bloco clicável. A classe 'category-item' estiliza cada bloco. A classe 'active' indica qual está selecionado (geralmente destacado com cor diferente). 'data-category' armazena o valor do filtro. O <span> contém o texto legível. -->
+      <div class="category-item" data-category="masculino"><i class="fas fa-tshirt"></i><span>Masculino</span></div>
+      <div class="category-item" data-category="feminino"><i class="fas fa-female"></i><span>Feminino</span></div>
+      <div class="category-item" data-category="infantil"><i class="fas fa-child"></i><span>Infantil</span></div>
+      <div class="category-item" data-category="acessorios"><i class="fas fa-hat-cowboy"></i><span>Acessórios</span></div>
+      <div class="category-item" data-category="esportes"><i class="fas fa-futbol"></i><span>Esportes</span></div>
+      <!-- Cada ícone do Font Awesome (fa-tshirt, fa-female, etc.) representa visualmente a categoria, melhorando a experiência do usuário. -->
+    </div>
+
+    <!-- ========== LISTA DE PRODUTOS ========== -->
+    <h2 class="section-title" id="productsTitle">Produtos em Destaque</h2>
+    <!-- Título da seção de produtos. O 'id' (productsTitle) permite que o JavaScript altere o texto dinamicamente (ex: "Produtos Masculinos") quando um filtro é aplicado. -->
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Div onde a lista de produtos será renderizada dinamicamente. A classe 'products-grid' aplica um layout de grade (grid) com colunas flexíveis. O 'id' (productsGrid) é o ponto de ancoragem principal para o JavaScript injetar os cards de produto. -->
+      <!-- Os produtos serão inseridos via JavaScript -->
+      <!-- Comentário explicativo indicando que o conteúdo desta div será gerado dinamicamente pelo arquivo script.js. Isso mantém o HTML limpo e permite que os dados dos produtos sejam facilmente atualizados ou vindos de uma API. -->
+    </div>
+
+    <!-- ========== DETALHES DO PRODUTO ========== -->
+    <section id="product-detail" style="display: none;">
+      <!-- Seção que exibe os detalhes de um produto específico quando o usuário clica em "Ver mais" ou no card. Inicialmente está oculta (display: none) porque o carregamento padrão mostra a lista de produtos. O 'id' (product-detail) é usado pelo JavaScript para mostrar/ocultar esta seção. -->
+      <button id="back-to-products" class="btn" style="margin-bottom:20px;"><i class="fas fa-arrow-left"></i> Voltar</button>
+      <!-- Botão para retornar à visualização da grade de produtos. A classe 'btn' mantém o estilo. O estilo inline 'margin-bottom:20px;' adiciona espaço abaixo do botão. O 'id' (back-to-products) escuta o clique para voltar. -->
+      <div id="product-detail-content">
+        <!-- Div que será preenchida dinamicamente com as informações detalhadas do produto selecionado (nome, preço, descrição, imagem, etc.). -->
+        <!-- Preenchido via JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <!-- Tag semântica que define o rodapé da página. Geralmente contém informações institucionais, links de atendimento, redes sociais e formas de pagamento. -->
+    <div class="container">
+      <!-- Container para alinhar o conteúdo do rodapé com o resto da página. -->
+
+      <div class="footer-grid">
+        <!-- Div com a classe 'footer-grid' que organiza as colunas do rodapé em um layout de grade (grid), geralmente em 4 colunas em telas grandes e empilhadas em telas pequenas. -->
+
+        <div>
+          <!-- Primeira coluna: Institucional. -->
+          <h4>Institucional</h4>
+          <!-- Subtítulo da coluna. -->
+          <ul>
+            <!-- Lista não ordenada de links. -->
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Trabalhe conosco</a></li>
+            <li><a href="#">Política de privacidade</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- Segunda coluna: Atendimento. -->
+          <h4>Atendimento</h4>
+          <ul>
+            <li><a href="#">Central de ajuda</a></li>
+            <li><a href="#">Entregas</a></li>
+            <li><a href="#">Trocas e devoluções</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- Terceira coluna: Redes Sociais. -->
+          <h4>Redes Sociais</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <!-- Aqui são usados ícones da família 'fab' (Font Awesome Brands), específicos para marcas/redes sociais. O texto é exibido ao lado do ícone. -->
+            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- Quarta coluna: Formas de pagamento. -->
+          <h4>Formas de pagamento</h4>
+          <ul>
+            <li><i class="fas fa-credit-card"></i> Cartão de crédito</li>
+            <!-- Itens sem <a>, pois são apenas informativos. Ícones da família 'fas' representam métodos de pagamento. -->
+            <li><i class="fas fa-barcode"></i> Boleto</li>
+            <li><i class="fas fa-qrcode"></i> PIX</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <!-- Div para a linha de direitos autorais. A classe 'footer-bottom' geralmente aplica uma borda superior e centraliza o texto. -->
+        &copy; 2025 ShopNow - Todos os direitos reservados.
+        <!-- O caractere &copy; produz o símbolo de copyright (©). -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== CARRINHO SIDEBAR ========== -->
+  <div class="cart-overlay" id="cartOverlay">
+    <!-- Div que atua como um overlay (fundo escuro) que cobre toda a tela quando o carrinho é aberto. A classe 'cart-overlay' geralmente tem posição fixa, z-index alto e background semi-transparente para desabilitar a interação com o conteúdo de trás. O 'id' (cartOverlay) é usado no JavaScript para abrir/fechar o carrinho. -->
+
+    <div class="cart-sidebar">
+      <!-- Div que representa o painel lateral do carrinho. Ele desliza da direita para a esquerda. A classe 'cart-sidebar' define largura fixa, fundo branco e sombras. -->
+
+      <h2>
+        <!-- Título do carrinho. -->
+        Carrinho
+        <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        <!-- Botão para fechar o carrinho. A classe 'close-cart' estiliza o botão, e o 'id' (closeCart) escuta o evento de clique para fechar o overlay. -->
+      </h2>
+
+      <div id="cartItems">
+        <!-- Div que será preenchida dinamicamente com a lista de produtos adicionados ao carrinho. O 'id' (cartItems) permite que o JavaScript injete os itens (nome, quantidade, preço, botão remover) aqui. -->
+        <p style="text-align:center; color: var(--gray);">Seu carrinho está vazio.</p>
+        <!-- Mensagem padrão exibida quando o carrinho está vazio. O estilo inline define o texto centralizado e na cor cinza (definida por uma variável CSS --gray). -->
+      </div>
+
+      <div class="cart-total">
+        <!-- Div que exibe o total da compra. -->
+        <span>Total:</span>
+        <span id="cartTotalPrice">R$ 0,00</span>
+        <!-- O 'id' (cartTotalPrice) é atualizado via JavaScript sempre que um item é adicionado ou removido, recalculando o valor total. -->
+      </div>
+
+      <div class="cart-actions">
+        <!-- Div que agrupa os botões de ação do carrinho. -->
+        <button class="btn-checkout" id="checkoutBtn">Finalizar Compra</button>
+        <!-- Botão para finalizar a compra. A classe 'btn-checkout' estiliza o botão como primário (geralmente verde ou azul). -->
+        <button class="btn-clear" id="clearCartBtn">Limpar</button>
+        <!-- Botão para limpar todos os itens do carrinho. A classe 'btn-clear' geralmente tem estilo de perigo (vermelho) ou secundário. -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript externo -->
+  <script src="script.js"></script>
+  <!-- Importa o arquivo JavaScript externo (script.js). Ele contém toda a lógica da aplicação: renderização dos produtos, filtros, busca, adição/remoção do carrinho, cálculo de total e controle do sidebar. A tag <script> deve ser colocada no final do <body> para garantir que o DOM (todos os elementos HTML) já esteja carregado antes da execução do script, evitando erros de referência a elementos indefinidos. -->
+
+</body>
+</html>

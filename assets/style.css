@@ -1,0 +1,1190 @@
+/* ============================================================
+   RESET E VARIÁVEIS
+   ============================================================ */
+
+/* Seletor universal (*) – atinge todos os elementos HTML.
+   Remove margens e preenchimentos padrão que os navegadores aplicam,
+   garantindo que o layout seja consistente independente do user-agent.
+   box-sizing: border-box – faz com que as dimensões (largura/altura)
+   incluam padding e borda, facilitando o cálculo de tamanhos.
+   font-family: define uma pilha de fontes, começando pela Segoe UI,
+   uma fonte moderna e limpa, com fallbacks para sistemas Windows, Mac e Linux.
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* A pseudo-classe :root tem a mesma especificidade que html,
+   mas é comum usar :root para declarar variáveis CSS globais.
+   Aqui definimos um "tema" com cores, sombras, bordas e transições.
+   --primary: azul principal (tom vibrante) – usado em botões, links e detalhes.
+   --primary-dark: tom mais escuro para estados de hover/foco.
+   --secondary: cinza bem claro – fundo da página.
+   --text: preto suave (#212529) – cor padrão para textos.
+   --gray: cinza médio – para textos secundários, placeholders.
+   --light-gray: cinza bem claro – para bordas, separadores.
+   --white: branco puro.
+   --shadow: sombra leve com transparência – para dar profundidade.
+   --radius: 8px – arredondamento padrão de cantos.
+   --transition: 0.3s ease – duração e curva de aceleração para animações.
+   Usar variáveis facilita a manutenção: uma alteração aqui reflete em todo o site.
+*/
+:root {
+  --primary: #2a7de1;
+  --primary-dark: #1a5cb5;
+  --secondary: #f8f9fa;
+  --text: #212529;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  --white: #ffffff;
+  --shadow: 0 2px 10px rgba(0,0,0,0.1);
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+/* Aplica o fundo da página (cinza claro) e a cor do texto (preto suave).
+   O body é o elemento raiz visível, herda as variáveis definidas em :root.
+*/
+body {
+  background-color: var(--secondary);
+  color: var(--text);
+}
+
+/* Remove o sublinhado padrão de todos os links (<a>).
+   'color: inherit' faz com que o link herde a cor do elemento pai,
+   em vez de usar o azul padrão do navegador.
+*/
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove os marcadores (bullets) das listas não ordenadas (<ul>).
+   Isso é comum em menus e listas de navegação.
+*/
+ul {
+  list-style: none;
+}
+
+/* Imagens:
+   max-width: 100% – garante que a imagem nunca ultrapasse a largura do container,
+   tornando-a responsiva.
+   display: block – remove o espaço extra que aparece abaixo da imagem
+   (causado pelo alinhamento inline com a linha de base do texto).
+*/
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Classe .iner – usada para centralizar o conteúdo e limitar a largura.
+   max-width: 1200px – largura máxima de 1200 pixels, comum para layouts desktop.
+   margin: 0 auto – centraliza o bloco horizontalmente.
+   padding: 0 20px – adiciona espaçamento lateral para que o conteúdo
+   não encoste nas bordas em telas pequenas.
+*/
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+/* ============================================================
+   HEADER (Cabeçalho)
+   ============================================================ */
+
+/* O elemento <header>:
+   background: branco – destaca-se do fundo da página.
+   box-shadow: sombra suave – cria profundidade.
+   position: sticky – fixa o cabeçalho no topo da janela quando o usuário rola a página.
+   top: 0 – ancora no topo.
+   z-index: 100 – garante que fique acima de outros elementos (como o banner e os produtos),
+   pois 100 é maior que o valor padrão (auto).
+*/
+header {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* .header-content – agrupa logo, busca e ações.
+   display: flex – cria um container flexível.
+   align-items: center – alinha os itens verticalmente ao centro.
+   justify-content: space-between – distribui os itens com espaço igual entre eles:
+   logo à esquerda, busca ao centro, ações à direita.
+   padding: 15px 0 – espaçamento vertical interno.
+   flex-wrap: wrap – permite que os itens quebrem para a linha seguinte
+   quando não houver espaço suficiente (responsividade).
+   gap: 15px – espaçamento entre os itens (substitui margens).
+*/
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* .logo – identidade visual da loja:
+   font-size: 1.8rem – tamanho grande.
+   font-weight: 700 – negrito.
+   color: var(--primary) – azul para destacar.
+*/
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Ícone (<i>) dentro do logotipo – adiciona um espaçamento à direita
+   para separar do texto "Protótipo".
+*/
+.logo i {
+  margin-right: 8px;
+}
+
+/* .search-bar – container da barra de pesquisa:
+   display: flex – para alinhar input e botão lado a lado.
+   flex: 1 1 300px – significa:
+     * 1 – pode crescer para ocupar espaço extra.
+     * 1 – pode encolher se necessário.
+     * 300px – tamanho base (flex-basis).
+   max-width: 500px – limita a largura máxima para não ficar enorme.
+*/
+.search-bar {
+  display: flex;
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+
+/* Campo de entrada (<input>):
+   flex: 1 – ocupa todo o espaço disponível dentro do flex container.
+   padding: 10px 15px – espaçamento interno confortável.
+   border: 2px solid var(--light-gray) – borda cinza clara.
+   border-radius: var(--radius) 0 0 var(--radius) – arredonda apenas os cantos esquerdos,
+   pois o botão à direita terá os cantos direitos arredondados (criando um grupo).
+   outline: none – remove o contorno azul padrão do navegador ao focar.
+   transition: var(--transition) – suaviza a mudança de cor da borda.
+*/
+.search-bar input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius) 0 0 var(--radius);
+  outline: none;
+  transition: var(--transition);
+}
+
+/* Quando o input ganha foco (usuário clica ou navega com Tab),
+   a borda muda para a cor primária – feedback visual.
+*/
+.search-bar input:focus {
+  border-color: var(--primary);
+}
+
+/* Botão de busca (<button>):
+   background: var(--primary) – azul.
+   color: white – texto branco.
+   border: none – remove a borda padrão.
+   padding: 0 20px – espaçamento lateral.
+   border-radius: 0 var(--radius) var(--radius) 0 – arredonda os cantos direitos,
+   completando o grupo com o input.
+   cursor: pointer – indica que é clicável.
+   transition: var(--transition) – para suavizar a mudança de cor no hover.
+*/
+.search-bar button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* Ao passar o mouse sobre o botão, escurece a cor (efeito hover). */
+.search-bar button:hover {
+  background: var(--primary-dark);
+}
+
+/* .header-actions – agrupa ícone do carrinho e menu hambúrguer.
+   display: flex – para alinhá-los horizontalmente.
+   align-items: center – centraliza verticalmente.
+   gap: 20px – espaçamento entre os ícones.
+*/
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* O link do carrinho (<a>):
+   position: relative – para que o selo (cart-count) seja posicionado absolutamente
+   em relação a este link.
+   font-size: 1.5rem – tamanho do ícone.
+   color: var(--text) – cor padrão.
+   transition: var(--transition) – para suavizar a mudança de cor no hover.
+*/
+.header-actions a {
+  position: relative;
+  font-size: 1.5rem;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+/* Ao passar o mouse sobre o link do carrinho, o ícone fica azul. */
+.header-actions a:hover {
+  color: var(--primary);
+}
+
+/* .cart-count – selo com a quantidade de itens:
+   position: absolute – posicionado em relação ao link pai (relative).
+   top: -8px – desloca para cima.
+   right: -12px – desloca para a direita, saindo um pouco do ícone.
+   background: #dc3545 – vermelho (cor padrão de badges).
+   color: white – texto branco.
+   font-size: 0.7rem – pequeno.
+   font-weight: 700 – negrito.
+   padding: 2px 7px – espaçamento interno.
+   border-radius: 50% – círculo perfeito.
+   min-width: 20px – largura mínima para acomodar números de dois dígitos.
+   text-align: center – centraliza o número.
+*/
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: #dc3545;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 50%;
+  min-width: 20px;
+  text-align: center;
+}
+
+
+/* ============================================================
+   MENU DE NAVEGAÇÃO
+   ============================================================ */
+
+/* A tag <nav>:
+   background: branco – para destacar do conteúdo.
+   border-top: 1px solid var(--light-gray) – uma linha fina separando do cabeçalho.
+*/
+nav {
+  background: var(--white);
+  border-top: 1px solid var(--light-gray);
+}
+
+/* .nav-menu – lista de links do menu:
+   display: flex – itens em linha.
+   justify-content: center – centraliza horizontalmente.
+   gap: 30px – espaçamento entre os links.
+   padding: 12px 0 – espaçamento vertical.
+   flex-wrap: wrap – permite quebra de linha em telas pequenas.
+*/
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 12px 0;
+  flex-wrap: wrap;
+}
+
+/* Cada link do menu:
+   font-weight: 600 – semi-negrito.
+   color: var(--text) – cor do texto padrão.
+   transition: var(--transition) – para suavizar mudanças.
+   position: relative – necessário para o pseudo-elemento ::after.
+   cursor: pointer – indica que é clicável (embora <a> já tenha, é reforçado).
+*/
+.nav-menu a {
+  font-weight: 600;
+  color: var(--text);
+  transition: var(--transition);
+  position: relative;
+  cursor: pointer;
+}
+
+/* Pseudo-elemento ::after – cria um sublinhado animado.
+   content: '' – obrigatório para existir.
+   position: absolute – posicionado em relação ao link.
+   bottom: -4px – fica 4px abaixo do texto.
+   left: 0 – alinhado à esquerda.
+   width: 0 – inicialmente invisível (largura zero).
+   height: 2px – altura da linha.
+   background: var(--primary) – cor azul.
+   transition: var(--transition) – animação suave.
+*/
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: var(--transition);
+}
+
+/* Ao passar o mouse sobre o link:
+   a linha se expande para 100% da largura do link.
+   a cor do texto muda para azul.
+*/
+.nav-menu a:hover::after {
+  width: 100%;
+}
+.nav-menu a:hover {
+  color: var(--primary);
+}
+
+/* .menu-toggle – botão hambúrguer (visível apenas em mobile).
+   display: none – oculto por padrão.
+   Será exibido via media query.
+   font-size: 1.8rem – tamanho grande para ser facilmente tocável.
+   background: none – sem fundo.
+   border: none – sem borda.
+   cursor: pointer – indica interatividade.
+   color: var(--text) – cor do ícone.
+*/
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+}
+
+
+/* ============================================================
+   BANNER
+   ============================================================ */
+
+/* .banner – seção de destaque:
+   background: linear-gradient(135deg, var(--primary), #6a9cf5) – gradiente diagonal
+   do azul principal para um azul mais claro.
+   color: white – texto branco para contraste.
+   padding: 60px 20px – espaçamento interno generoso.
+   border-radius: var(--radius) – cantos arredondados.
+   margin: 30px 0 – separação vertical.
+   text-align: center – centraliza o texto.
+   display: flex – para centralizar conteúdo verticalmente.
+   flex-direction: column – empilha os elementos.
+   align-items: center – centraliza horizontalmente.
+   justify-content: center – centraliza verticalmente.
+   min-height: 250px – altura mínima para manter proporção.
+*/
+.banner {
+  background: linear-gradient(135deg, var(--primary), #6a9cf5);
+  color: white;
+  padding: 60px 20px;
+  border-radius: var(--radius);
+  margin: 30px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+}
+
+/* Título principal do banner:
+   font-size: 2.8rem – grande e impactante.
+   margin-bottom: 15px – separação do parágrafo.
+*/
+.banner h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+/* Parágrafo do banner:
+   font-size: 1.2rem – legível.
+   max-width: 600px – evita que o texto fique muito largo.
+   opacity: 0.9 – suaviza levemente a cor.
+*/
+.banner p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  opacity: 0.9;
+}
+
+/* Botão de call-to-action dentro do banner:
+   margin-top: 25px – separação do parágrafo.
+   background: white – fundo branco.
+   color: var(--primary) – texto azul.
+   padding: 12px 30px – confortável.
+   border-radius: 50px – bordas totalmente arredondadas (pill).
+   font-weight: 700 – negrito.
+   transition: var(--transition) – para animações.
+   display: inline-block – permite margens e padding.
+*/
+.banner .btn {
+  margin-top: 25px;
+  background: white;
+  color: var(--primary);
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+/* Ao passar o mouse sobre o botão:
+   transform: scale(1.05) – aumenta 5% (efeito de zoom).
+   box-shadow: 0 5px 15px rgba(0,0,0,0.2) – sombra mais pronunciada.
+*/
+.banner .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+
+/* ============================================================
+   CATEGORIAS
+   ============================================================ */
+
+/* .section-title – título comum para seções:
+   font-size: 2rem – tamanho médio-grande.
+   margin: 40px 0 20px – espaçamento vertical (superior 40px, inferior 20px).
+   text-align: center – centralizado.
+*/
+.section-title {
+  font-size: 2rem;
+  margin: 40px 0 20px;
+  text-align: center;
+}
+
+/* .categories-grid – grade de categorias:
+   display: grid – layout em grade.
+   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) – colunas responsivas:
+     * auto-fit – ajusta o número de colunas ao espaço disponível.
+     * minmax(120px, 1fr) – cada coluna tem no mínimo 120px e no máximo 1 fração.
+   gap: 20px – espaçamento entre os itens.
+   margin-bottom: 40px – separação da seção seguinte.
+*/
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* Cada item de categoria:
+   background: var(--white) – fundo branco.
+   padding: 20px 10px – espaçamento interno.
+   border-radius: var(--radius) – cantos arredondados.
+   text-align: center – conteúdo centralizado.
+   box-shadow: var(--shadow) – sombra leve.
+   transition: var(--transition) – para animações de hover.
+   cursor: pointer – indica clicabilidade.
+*/
+.category-item {
+  background: var(--white);
+  padding: 20px 10px;
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+/* Ao passar o mouse:
+   transform: translateY(-5px) – sobe 5px (efeito flutuante).
+   box-shadow: 0 8px 20px rgba(0,0,0,0.1) – sombra mais forte.
+*/
+.category-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Categoria ativa (selecionada):
+   border: 2px solid var(--primary) – borda azul.
+   background: #eef4ff – fundo azulado claro.
+*/
+.category-item.active {
+  border: 2px solid var(--primary);
+  background: #eef4ff;
+}
+
+/* Ícone dentro da categoria:
+   font-size: 2.5rem – grande.
+   color: var(--primary) – azul.
+   margin-bottom: 8px – separação do texto.
+*/
+.category-item i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* Texto da categoria:
+   display: block – ocupa toda a largura (quebra de linha).
+   font-weight: 600 – negrito.
+*/
+.category-item span {
+  display: block;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   PRODUTOS
+   ============================================================ */
+
+/* .products-grid – grade de produtos:
+   display: grid.
+   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) – colunas responsivas
+     com tamanho mínimo de 220px, preenchendo o espaço disponível.
+   gap: 25px – espaçamento entre cards.
+   margin-bottom: 50px – separação do rodapé.
+*/
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+/* .product-card – cada card de produto:
+   background: var(--white) – fundo branco.
+   border-radius: var(--radius) – cantos arredondados.
+   box-shadow: var(--shadow) – sombra.
+   overflow: hidden – corta qualquer conteúdo que ultrapasse as bordas arredondadas.
+   transition: var(--transition) – animação de hover.
+   display: flex – para organizar imagem, info e botões.
+   flex-direction: column – empilha verticalmente.
+*/
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover do card: sobe 6px e sombra mais intensa. */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Imagem do produto:
+   width: 100% – ocupa toda a largura do card.
+   height: 200px – altura fixa.
+   object-fit: cover – redimensiona a imagem para cobrir a área sem distorcer,
+   cortando o excesso.
+   background: var(--light-gray) – cor de fundo enquanto a imagem não carrega.
+*/
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: var(--light-gray);
+}
+
+/* .product-info – container das informações:
+   padding: 15px – espaçamento interno.
+   flex: 1 – faz com que o container ocupe todo o espaço restante no card,
+   empurrando os botões para baixo.
+   display: flex – para empilhar os elementos.
+   flex-direction: column – coluna.
+*/
+.product-info {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Título do produto:
+   font-size: 1rem – tamanho padrão.
+   margin-bottom: 8px – separação do preço.
+*/
+.product-info h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* Preço atual:
+   font-size: 1.4rem – destaque.
+   font-weight: 700 – negrito.
+   color: var(--primary) – azul.
+   margin: 8px 0 – espaçamento vertical.
+*/
+.product-info .price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 8px 0;
+}
+
+/* Preço antigo (riscado):
+   font-size: 0.9rem – menor.
+   color: var(--gray) – cinza.
+   text-decoration: line-through – riscado.
+   margin-left: 8px – separação do preço atual.
+*/
+.product-info .old-price {
+  font-size: 0.9rem;
+  color: var(--gray);
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+/* Avaliação (estrelas):
+   color: #f1c40f – amarelo.
+   margin-bottom: 10px – separação dos botões.
+*/
+.product-info .rating {
+  color: #f1c40f;
+  margin-bottom: 10px;
+}
+
+/* Botão "Adicionar ao carrinho":
+   background: var(--primary) – azul.
+   color: white – texto branco.
+   border: none – sem borda.
+   padding: 10px 0 – espaçamento vertical.
+   border-radius: var(--radius) – cantos arredondados.
+   font-weight: 600 – negrito.
+   cursor: pointer – clicável.
+   transition: var(--transition) – suavização.
+   margin-top: auto – empurra o botão para a parte inferior do container,
+   mantendo todos os botões alinhados na mesma altura.
+   flex: 1 – faz com que todos os botões tenham o mesmo tamanho,
+   preenchendo o espaço disponível.
+*/
+.product-info .btn-add {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 0;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: auto;
+  flex: 1;
+}
+
+/* Hover do botão adicionar: escurece. */
+.product-info .btn-add:hover {
+  background: var(--primary-dark);
+}
+
+/* Botão "Ver detalhes":
+   background: #6c757d – cinza (tom do Bootstrap).
+   color: white.
+   border: none.
+   padding: 10px 0.
+   border-radius: var(--radius).
+   cursor: pointer.
+   flex: 1 – para manter altura uniforme.
+   transition: var(--transition).
+*/
+.btn-detail {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  flex: 1;
+  transition: var(--transition);
+}
+
+/* Hover do botão detalhes: escurece. */
+.btn-detail:hover {
+  background: #5a6268;
+}
+
+
+/* ============================================================
+   DETALHE DO PRODUTO
+   ============================================================ */
+
+/* #product-detail – seção de detalhe (inicialmente oculta):
+   margin-bottom: 50px – separação do rodapé.
+*/
+#product-detail {
+  margin-bottom: 50px;
+}
+
+/* #product-detail-content – conteúdo do detalhe:
+   background: var(--white) – fundo branco.
+   padding: 30px – espaçamento interno.
+   border-radius: var(--radius) – cantos.
+   box-shadow: var(--shadow) – sombra.
+*/
+#product-detail-content {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Botão "Voltar" para a lista:
+   background: var(--gray) – cinza.
+   color: white.
+   border: none.
+   padding: 10px 20px.
+   border-radius: var(--radius).
+   cursor: pointer.
+   font-weight: 600.
+   transition: var(--transition).
+*/
+#back-to-products {
+  background: var(--gray);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+/* Hover do voltar: escurece. */
+#back-to-products:hover {
+  background: #5a6268;
+}
+
+
+/* ============================================================
+   CARRINHO SIDEBAR
+   ============================================================ */
+
+/* .cart-overlay – fundo escuro que cobre a página quando o carrinho é aberto.
+   display: none – oculto por padrão.
+   position: fixed – fixo em relação à janela.
+   top: 0; left: 0; width: 100%; height: 100% – cobre toda a tela.
+   background: rgba(0,0,0,0.5) – preto com 50% de transparência.
+   z-index: 200 – acima do cabeçalho (que tem 100).
+   justify-content: flex-end – alinha o sidebar à direita.
+*/
+.cart-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  justify-content: flex-end;
+}
+
+/* Quando a classe .open é adicionada (via JavaScript), o overlay é exibido.
+   display: flex – torna o overlay um container flex, mostrando o sidebar.
+*/
+.cart-overlay.open {
+  display: flex;
+}
+
+/* .cart-sidebar – o painel lateral do carrinho:
+   background: var(--white) – fundo branco.
+   width: 100% – ocupa toda a largura do overlay.
+   max-width: 400px – largura máxima de 400px.
+   height: 100% – altura total da tela.
+   padding: 25px – espaçamento interno.
+   overflow-y: auto – permite rolagem vertical se o conteúdo exceder.
+   display: flex – para organizar os elementos em coluna.
+   flex-direction: column – empilha título, itens, total e botões.
+   animation: slideIn 0.3s ease – animação de entrada definida abaixo.
+*/
+.cart-sidebar {
+  background: var(--white);
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  padding: 25px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease;
+}
+
+/* @keyframes slideIn – define a animação de deslizamento da direita para a esquerda.
+   from: transform: translateX(100%) – começa fora da tela à direita.
+   to: transform: translateX(0) – termina na posição normal.
+*/
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Título do carrinho:
+   display: flex – para alinhar o título e o botão fechar.
+   justify-content: space-between – coloca o título à esquerda e o botão à direita.
+   align-items: center – centraliza verticalmente.
+   border-bottom: 2px solid var(--light-gray) – linha separadora.
+   padding-bottom: 15px – espaçamento inferior.
+   margin-bottom: 20px – separação dos itens.
+*/
+.cart-sidebar h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--light-gray);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+/* Botão de fechar (X):
+   background: none – sem fundo.
+   border: none – sem borda.
+   font-size: 1.8rem – grande para facilitar o toque.
+   cursor: pointer – clicável.
+   color: var(--gray) – cinza.
+   transition: var(--transition) – suavização.
+*/
+.cart-sidebar .close-cart {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--gray);
+  transition: var(--transition);
+}
+
+/* Hover do fechar: fica mais escuro. */
+.cart-sidebar .close-cart:hover {
+  color: var(--text);
+}
+
+/* .cart-item – cada item dentro do carrinho:
+   display: flex – para alinhar imagem, detalhes e botão remover.
+   gap: 15px – espaçamento entre os elementos.
+   padding: 12px 0 – espaçamento vertical.
+   border-bottom: 1px solid var(--light-gray) – linha separadora.
+   align-items: center – centraliza verticalmente.
+*/
+.cart-item {
+  display: flex;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--light-gray);
+  align-items: center;
+}
+
+/* Imagem do item no carrinho:
+   width: 60px; height: 60px – tamanho fixo.
+   object-fit: cover – cobre a área sem distorcer.
+   border-radius: var(--radius) – cantos arredondados.
+   background: var(--light-gray) – fundo para carregamento.
+*/
+.cart-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--light-gray);
+}
+
+/* .cart-item-details – container das informações do item:
+   flex: 1 – ocupa o espaço restante entre imagem e botão remover.
+*/
+.cart-item-details {
+  flex: 1;
+}
+
+/* Nome do item: tamanho 0.95rem. */
+.cart-item-details h4 {
+  font-size: 0.95rem;
+}
+
+/* Preço do item: azul e negrito. */
+.cart-item-details .item-price {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Botão remover item (lixeira):
+   background: none – sem fundo.
+   border: none – sem borda.
+   color: #dc3545 – vermelho (indicativo de exclusão).
+   font-size: 1.2rem – tamanho adequado para toque.
+   cursor: pointer – clicável.
+*/
+.cart-item .remove-item {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* .cart-total – total da compra:
+   margin-top: auto – empurra o total para o final do flex container,
+   deixando os itens acima e os botões abaixo.
+   padding-top: 20px – separação dos itens.
+   border-top: 2px solid var(--light-gray) – linha separadora.
+   font-size: 1.3rem – destaque.
+   font-weight: 700 – negrito.
+   display: flex – para alinhar "Total:" e o valor.
+   justify-content: space-between – um à esquerda, outro à direita.
+*/
+.cart-total {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 2px solid var(--light-gray);
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .cart-actions – agrupa os botões de ação (Finalizar e Limpar):
+   display: flex – lado a lado.
+   gap: 10px – espaçamento entre eles.
+   margin-top: 15px – separação do total.
+*/
+.cart-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Botões dentro de .cart-actions:
+   flex: 1 – ambos ocupam a mesma largura.
+   padding: 12px – espaçamento interno confortável.
+   border: none – sem borda.
+   border-radius: var(--radius) – cantos arredondados.
+   font-weight: 600 – negrito.
+   cursor: pointer – clicável.
+   transition: var(--transition) – suavização.
+*/
+.cart-actions button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* .btn-checkout – botão finalizar:
+   background: var(--primary) – azul.
+   color: white.
+*/
+.btn-checkout {
+  background: var(--primary);
+  color: white;
+}
+
+/* Hover do finalizar: escurece. */
+.btn-checkout:hover {
+  background: var(--primary-dark);
+}
+
+/* .btn-clear – botão limpar:
+   background: var(--light-gray) – cinza claro.
+   color: var(--text) – texto padrão.
+*/
+.btn-clear {
+  background: var(--light-gray);
+  color: var(--text);
+}
+
+/* Hover do limpar: escurece um pouco. */
+.btn-clear:hover {
+  background: #d4d4d4;
+}
+
+
+/* ============================================================
+   FOOTER (Rodapé)
+   ============================================================ */
+
+/* <footer>:
+   background: var(--white) – fundo branco.
+   padding: 40px 0 20px – espaçamento vertical (superior 40, inferior 20).
+   margin-top: 40px – separação do conteúdo principal.
+   border-top: 1px solid var(--light-gray) – linha separadora.
+*/
+footer {
+  background: var(--white);
+  padding: 40px 0 20px;
+  margin-top: 40px;
+  border-top: 1px solid var(--light-gray);
+}
+
+/* .footer-grid – grade de colunas do rodapé:
+   display: grid.
+   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) – colunas responsivas
+     com mínimo de 180px, preenchendo o espaço.
+   gap: 30px – espaçamento entre colunas.
+   margin-bottom: 30px – separação da linha inferior.
+*/
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Títulos das colunas: margem inferior. */
+.footer-grid h4 {
+  margin-bottom: 15px;
+}
+
+/* Cada item da lista: margem inferior. */
+.footer-grid ul li {
+  margin-bottom: 8px;
+}
+
+/* Links do rodapé:
+   color: var(--gray) – cinza.
+   transition: var(--transition) – suavização.
+*/
+.footer-grid ul li a {
+  color: var(--gray);
+  transition: var(--transition);
+}
+
+/* Hover dos links: ficam azuis. */
+.footer-grid ul li a:hover {
+  color: var(--primary);
+}
+
+/* .footer-bottom – linha de copyright:
+   text-align: center – centralizado.
+   padding-top: 20px – separação da grade.
+   border-top: 1px solid var(--light-gray) – linha separadora.
+   color: var(--gray) – cinza.
+   font-size: 0.9rem – menor que o texto padrão.
+*/
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--light-gray);
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+
+/* ============================================================
+   RESPONSIVIDADE (Media Queries)
+   ============================================================ */
+
+/* Breakpoint para telas de até 768px (tablets e celulares grandes) */
+@media (max-width: 768px) {
+  /* Exibe o botão hambúrguer (antes estava oculto). */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Menu de navegação:
+     display: none – oculto por padrão.
+     Quando a classe .open é adicionada via JavaScript, passa a display: flex.
+     flex-direction: column – itens em coluna.
+     align-items: center – centraliza.
+     gap: 15px – espaçamento vertical.
+     padding: 15px 0 – espaçamento.
+     width: 100% – ocupa toda a largura do container pai.
+  */
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    width: 100%;
+  }
+  .nav-menu.open {
+    display: flex;
+  }
+
+  /* Cabeçalho: permite que os itens quebrem linha. */
+  .header-content {
+    flex-wrap: wrap;
+  }
+
+  /* Barra de pesquisa:
+     order: 3 – coloca após os outros itens (logo e ações).
+     flex-basis: 100% – ocupa toda a largura disponível.
+     max-width: 100% – sem limite de largura.
+  */
+  .search-bar {
+    order: 3;
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  /* Título do banner menor. */
+  .banner h1 {
+    font-size: 2rem;
+  }
+  /* Parágrafo do banner menor. */
+  .banner p {
+    font-size: 1rem;
+  }
+
+  /* Grade de produtos: colunas com mínimo de 160px (em vez de 220px) e gap menor. */
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+
+  /* Sidebar do carrinho ocupa toda a largura em mobile. */
+  .cart-sidebar {
+    max-width: 100%;
+  }
+
+  /* Conteúdo do detalhe com padding reduzido. */
+  #product-detail-content {
+    padding: 20px;
+  }
+
+  /* Força que a grade interna do detalhe (se houver) tenha apenas 1 coluna. */
+  #product-detail-content > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Breakpoint para telas muito pequenas (celulares com até 480px) */
+@media (max-width: 480px) {
+  /* Logotipo menor. */
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  /* Ícones de ação (carrinho) menores. */
+  .header-actions a {
+    font-size: 1.2rem;
+  }
+
+  /* Grade de categorias: 3 colunas fixas (em vez de responsivo automático). */
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Grade de produtos: 2 colunas fixas. */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Banner com menos padding e altura mínima menor. */
+  .banner {
+    padding: 40px 15px;
+    min-height: 180px;
+  }
+
+  /* Título do banner ainda menor. */
+  .banner h1 {
+    font-size: 1.6rem;
+  }
+}
